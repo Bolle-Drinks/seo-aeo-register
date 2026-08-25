@@ -395,6 +395,32 @@ ol.plan span{display:block;color:var(--ink-faint);font-size:14.5px;margin-top:2p
   .task .ref{order:4;margin-left:auto;}
 }
 
+
+.sheet-cta{
+  border:1px solid var(--gold);
+  background:var(--sunk);
+  padding:18px 20px 16px;
+  margin:0 0 26px;
+}
+.sheet-cta p{margin:0 0 9px;max-width:var(--measure);}
+.sheet-cta p:last-child{margin-bottom:0;}
+.sheet-cta .k{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;
+}
+.sheet-link{
+  font-weight:600;font-size:1.02rem;
+  text-decoration-thickness:1px;text-underline-offset:3px;
+}
+.sheet-cta .fine{font-size:13px;color:var(--ink-faint);}
+.task input[disabled]{cursor:default;opacity:.9;}
+.task input.who[readonly]{
+  background:transparent;border-color:transparent;
+  padding-left:0;cursor:default;color:var(--ink-soft);
+}
+.task input.who[readonly]::placeholder{color:transparent;}
+
 .wl-note{font-size:13px;color:var(--ink-faint);font-style:italic;margin:4px 0 0;}
 
 footer{
@@ -439,94 +465,77 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 
 
 <h2 id="worklist">In-house worklist</h2>
-<p class="sec-note">26 tasks, grouped by who can do them rather than by severity. Tick as you go and put your name against what you did &mdash; ticks, names and dates save for everyone with access to this page. 25 of the 26 need no SEO specialist.</p>
+<p class="sec-note">26 tasks, grouped by who can do them rather than by severity. 26 tasks, grouped by who can do them rather than by severity. 25 of the 26 need no SEO specialist. Progress is tracked in the shared worklist linked below; this page mirrors it.</p>
+
+<div class="sheet-cta">
+  <p class="k">Where the ticking happens</p>
+  <p>This page is the audit record and a <strong>read-only mirror</strong> of progress. Tick tasks off, and put your name against them, in the shared worklist:</p>
+  <p><a class="sheet-link" href="https://docs.google.com/spreadsheets/d/1WnpOv5EGxyj5k0lwmsxsOo6hxKYnUX8nrm4VqolTEcM/edit" target="_blank" rel="noopener">Open the BOLLE SEO &amp; AEO worklist &rarr;</a></p>
+  <p class="fine">Anyone with a Google account can be given access &mdash; no Claude or GitHub login needed. The mirror below is refreshed when the register is updated.</p>
+</div>
 
 <div class="wl-head">
   <span class="wl-count" id="wl-count">0 of 26 done</span>
   <span class="wl-mode" id="wl-mode">&nbsp;</span>
 </div>
 <div class="bar"><i id="wl-bar" style="width:0%"></i></div>
-<p class="wl-legend"><span>Tick &middot; done</span><span>Name &middot; who did it</span><span>Date &middot; stamped automatically</span><span>Right &middot; register entry</span></p>
+<p class="wl-legend"><span>Tick &middot; done</span><span>Name &middot; who did it</span><span>Date &middot; when</span><span>Right &middot; register entry</span></p>
 
 <div id="wl-body">
 <div class="wl-group">
 <p class="gh">A &nbsp;&middot;&nbsp; Shopify admin &mdash; no code &nbsp;&middot;&nbsp; 11 items</p>
 <p class="gs">No deploy risk, and it can run in parallel with the theme work. This is most of the hours, because it is mostly writing.</p>
-<div class="task" data-id="a01"><input type="checkbox" id="t-a01" data-task="a01"><label for="t-a01">Fix <code>/pages/shipping-policy</code> title &amp; description on the US site (currently the privacy policy's)</label><span class="who-wrap"><input type="text" class="who" data-who="a01" maxlength="28" placeholder="who?" aria-label="Person who did task A01" spellcheck="false"><span class="when" data-when="a01"></span></span><span class="ref">SEO-08</span></div>
-<div class="task" data-id="a02"><input type="checkbox" id="t-a02" data-task="a02"><label for="t-a02">Fix <code>/pages/shipping-policy</code> title &amp; description on the UK site (currently the returns policy's)</label><span class="who-wrap"><input type="text" class="who" data-who="a02" maxlength="28" placeholder="who?" aria-label="Person who did task A02" spellcheck="false"><span class="when" data-when="a02"></span></span><span class="ref">SEO-08</span></div>
-<div class="task" data-id="a03"><input type="checkbox" id="t-a03" data-task="a03"><label for="t-a03">Write the 14 missing meta descriptions</label><span class="who-wrap"><input type="text" class="who" data-who="a03" maxlength="28" placeholder="who?" aria-label="Person who did task A03" spellcheck="false"><span class="when" data-when="a03"></span></span><span class="ref">SEO-08</span></div>
-<div class="task" data-id="a04"><input type="checkbox" id="t-a04" data-task="a04"><label for="t-a04">Split the duplicate title/description pairs — UK magnums, US champagne vs sparkling</label><span class="who-wrap"><input type="text" class="who" data-who="a04" maxlength="28" placeholder="who?" aria-label="Person who did task A04" spellcheck="false"><span class="when" data-when="a04"></span></span><span class="ref">SEO-08</span></div>
-<div class="task" data-id="a05"><input type="checkbox" id="t-a05" data-task="a05"><label for="t-a05">Rewrite the ~20 blog titles currently cut mid-word</label><span class="who-wrap"><input type="text" class="who" data-who="a05" maxlength="28" placeholder="who?" aria-label="Person who did task A05" spellcheck="false"><span class="when" data-when="a05"></span></span><span class="ref">SEO-04</span></div>
-<div class="task" data-id="a06"><input type="checkbox" id="t-a06" data-task="a06"><label for="t-a06">Create redirects from the retired &ldquo;where to buy&rdquo; URLs to the chosen one</label><span class="who-wrap"><input type="text" class="who" data-who="a06" maxlength="28" placeholder="who?" aria-label="Person who did task A06" spellcheck="false"><span class="when" data-when="a06"></span></span><span class="ref">SEO-05</span></div>
-<div class="task" data-id="a07"><input type="checkbox" id="t-a07" data-task="a07"><label for="t-a07">Unpublish the 4 internal UK collections so they leave the sitemap</label><span class="who-wrap"><input type="text" class="who" data-who="a07" maxlength="28" placeholder="who?" aria-label="Person who did task A07" spellcheck="false"><span class="when" data-when="a07"></span></span><span class="ref">SEO-05</span></div>
-<div class="task" data-id="a08"><input type="checkbox" id="t-a08" data-task="a08"><label for="t-a08">Unpublish <code>bolle-locations-all-tiles</code> and <code>purchase-survey</code> on both sites</label><span class="who-wrap"><input type="text" class="who" data-who="a08" maxlength="28" placeholder="who?" aria-label="Person who did task A08" spellcheck="false"><span class="when" data-when="a08"></span></span><span class="ref">SEO-05</span></div>
-<div class="task" data-id="a09"><input type="checkbox" id="t-a09" data-task="a09"><label for="t-a09">Normalise the <code>vendor</code> field across all products to one spelling</label><span class="who-wrap"><input type="text" class="who" data-who="a09" maxlength="28" placeholder="who?" aria-label="Person who did task A09" spellcheck="false"><span class="when" data-when="a09"></span></span><span class="ref">SEO-02</span></div>
-<div class="task" data-id="a10"><input type="checkbox" id="t-a10" data-task="a10"><label for="t-a10">Set the store locale to en-GB and en-US respectively</label><span class="who-wrap"><input type="text" class="who" data-who="a10" maxlength="28" placeholder="who?" aria-label="Person who did task A10" spellcheck="false"><span class="when" data-when="a10"></span></span><span class="ref">SEO-11</span></div>
-<div class="task" data-id="a11"><input type="checkbox" id="t-a11" data-task="a11"><label for="t-a11">Add alt text to the 57 images that have none</label><span class="who-wrap"><input type="text" class="who" data-who="a11" maxlength="28" placeholder="who?" aria-label="Person who did task A11" spellcheck="false"><span class="when" data-when="a11"></span></span><span class="ref">SEO-12</span></div>
+<div class="task" data-id="a01"><input type="checkbox" id="t-a01" data-task="a01" disabled><label for="t-a01">Fix <code>/pages/shipping-policy</code> title &amp; description on the US site (currently the privacy policy's)</label><span class="who-wrap"><input type="text" class="who" data-who="a01" maxlength="28" placeholder="who?" aria-label="Person who did task A01" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="a01"></span></span><span class="ref">SEO-08</span></div>
+<div class="task" data-id="a02"><input type="checkbox" id="t-a02" data-task="a02" disabled><label for="t-a02">Fix <code>/pages/shipping-policy</code> title &amp; description on the UK site (currently the returns policy's)</label><span class="who-wrap"><input type="text" class="who" data-who="a02" maxlength="28" placeholder="who?" aria-label="Person who did task A02" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="a02"></span></span><span class="ref">SEO-08</span></div>
+<div class="task" data-id="a03"><input type="checkbox" id="t-a03" data-task="a03" disabled><label for="t-a03">Write the 14 missing meta descriptions</label><span class="who-wrap"><input type="text" class="who" data-who="a03" maxlength="28" placeholder="who?" aria-label="Person who did task A03" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="a03"></span></span><span class="ref">SEO-08</span></div>
+<div class="task" data-id="a04"><input type="checkbox" id="t-a04" data-task="a04" disabled><label for="t-a04">Split the duplicate title/description pairs — UK magnums, US champagne vs sparkling</label><span class="who-wrap"><input type="text" class="who" data-who="a04" maxlength="28" placeholder="who?" aria-label="Person who did task A04" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="a04"></span></span><span class="ref">SEO-08</span></div>
+<div class="task" data-id="a05"><input type="checkbox" id="t-a05" data-task="a05" disabled><label for="t-a05">Rewrite the ~20 blog titles currently cut mid-word</label><span class="who-wrap"><input type="text" class="who" data-who="a05" maxlength="28" placeholder="who?" aria-label="Person who did task A05" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="a05"></span></span><span class="ref">SEO-04</span></div>
+<div class="task" data-id="a06"><input type="checkbox" id="t-a06" data-task="a06" disabled><label for="t-a06">Create redirects from the retired &ldquo;where to buy&rdquo; URLs to the chosen one</label><span class="who-wrap"><input type="text" class="who" data-who="a06" maxlength="28" placeholder="who?" aria-label="Person who did task A06" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="a06"></span></span><span class="ref">SEO-05</span></div>
+<div class="task" data-id="a07"><input type="checkbox" id="t-a07" data-task="a07" disabled><label for="t-a07">Unpublish the 4 internal UK collections so they leave the sitemap</label><span class="who-wrap"><input type="text" class="who" data-who="a07" maxlength="28" placeholder="who?" aria-label="Person who did task A07" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="a07"></span></span><span class="ref">SEO-05</span></div>
+<div class="task" data-id="a08"><input type="checkbox" id="t-a08" data-task="a08" disabled><label for="t-a08">Unpublish <code>bolle-locations-all-tiles</code> and <code>purchase-survey</code> on both sites</label><span class="who-wrap"><input type="text" class="who" data-who="a08" maxlength="28" placeholder="who?" aria-label="Person who did task A08" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="a08"></span></span><span class="ref">SEO-05</span></div>
+<div class="task" data-id="a09"><input type="checkbox" id="t-a09" data-task="a09" disabled><label for="t-a09">Normalise the <code>vendor</code> field across all products to one spelling</label><span class="who-wrap"><input type="text" class="who" data-who="a09" maxlength="28" placeholder="who?" aria-label="Person who did task A09" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="a09"></span></span><span class="ref">SEO-02</span></div>
+<div class="task" data-id="a10"><input type="checkbox" id="t-a10" data-task="a10" disabled><label for="t-a10">Set the store locale to en-GB and en-US respectively</label><span class="who-wrap"><input type="text" class="who" data-who="a10" maxlength="28" placeholder="who?" aria-label="Person who did task A10" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="a10"></span></span><span class="ref">SEO-11</span></div>
+<div class="task" data-id="a11"><input type="checkbox" id="t-a11" data-task="a11" disabled><label for="t-a11">Add alt text to the 57 images that have none</label><span class="who-wrap"><input type="text" class="who" data-who="a11" maxlength="28" placeholder="who?" aria-label="Person who did task A11" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="a11"></span></span><span class="ref">SEO-12</span></div>
 </div>
 <div class="wl-group">
 <p class="gh">B &nbsp;&middot;&nbsp; Theme edits &mdash; one batch &nbsp;&middot;&nbsp; 9 items</p>
 <p class="gs">Four of these are single-line changes in one file. Follows your existing register and change-doc practice.</p>
-<div class="task" data-id="b01"><input type="checkbox" id="t-b01" data-task="b01"><label for="t-b01">Change the 3 drawer <code>&lt;h3&gt;</code> to <code>&lt;div&gt;</code> in <code>layout/theme.liquid</code></label><span class="who-wrap"><input type="text" class="who" data-who="b01" maxlength="28" placeholder="who?" aria-label="Person who did task B01" spellcheck="false"><span class="when" data-when="b01"></span></span><span class="ref">SEO-03</span></div>
-<div class="task" data-id="b02"><input type="checkbox" id="t-b02" data-task="b02"><label for="t-b02">Delete the title suffix at <code>layout/theme.liquid:73</code></label><span class="who-wrap"><input type="text" class="who" data-who="b02" maxlength="28" placeholder="who?" aria-label="Person who did task B02" spellcheck="false"><span class="when" data-when="b02"></span></span><span class="ref">SEO-04</span></div>
-<div class="task" data-id="b03"><input type="checkbox" id="t-b03" data-task="b03"><label for="t-b03">Add a real H1 to both homepages</label><span class="who-wrap"><input type="text" class="who" data-who="b03" maxlength="28" placeholder="who?" aria-label="Person who did task B03" spellcheck="false"><span class="when" data-when="b03"></span></span><span class="ref">SEO-03</span></div>
-<div class="task" data-id="b04"><input type="checkbox" id="t-b04" data-task="b04"><label for="t-b04">Make the review-rating fallback omit the rating instead of publishing 4 stars</label><span class="who-wrap"><input type="text" class="who" data-who="b04" maxlength="28" placeholder="who?" aria-label="Person who did task B04" spellcheck="false"><span class="when" data-when="b04"></span></span><span class="ref">SEO-07</span></div>
-<div class="task" data-id="b05"><input type="checkbox" id="t-b05" data-task="b05"><label for="t-b05">Delete <code>structured-data-product.liquid</code> and repoint the 3 sections that render it</label><span class="who-wrap"><input type="text" class="who" data-who="b05" maxlength="28" placeholder="who?" aria-label="Person who did task B05" spellcheck="false"><span class="when" data-when="b05"></span></span><span class="ref">SEO-09</span></div>
-<div class="task" data-id="b06"><input type="checkbox" id="t-b06" data-task="b06"><label for="t-b06">Replace the hard-coded UK canonical and <code>force_current_site</code> with request-derived values</label><span class="who-wrap"><input type="text" class="who" data-who="b06" maxlength="28" placeholder="who?" aria-label="Person who did task B06" spellcheck="false"><span class="when" data-when="b06"></span></span><span class="ref">SEO-10</span></div>
-<div class="task" data-id="b07"><input type="checkbox" id="t-b07" data-task="b07"><label for="t-b07">Add <code>BreadcrumbList</code> to the collection and article templates</label><span class="who-wrap"><input type="text" class="who" data-who="b07" maxlength="28" placeholder="who?" aria-label="Person who did task B07" spellcheck="false"><span class="when" data-when="b07"></span></span><span class="ref">SEO-06</span></div>
-<div class="task" data-id="b08"><input type="checkbox" id="t-b08" data-task="b08"><label for="t-b08">Author <code>templates/agents.md.liquid</code> — your process, awards and stockists</label><span class="who-wrap"><input type="text" class="who" data-who="b08" maxlength="28" placeholder="who?" aria-label="Person who did task B08" spellcheck="false"><span class="when" data-when="b08"></span></span><span class="ref">AEO-01</span></div>
-<div class="task" data-id="b09"><input type="checkbox" id="t-b09" data-task="b09"><label for="t-b09">Delete the 48 unreferenced sections and 18 leftover templates</label><span class="who-wrap"><input type="text" class="who" data-who="b09" maxlength="28" placeholder="who?" aria-label="Person who did task B09" spellcheck="false"><span class="when" data-when="b09"></span></span><span class="ref">SEO-13</span></div>
+<div class="task" data-id="b01"><input type="checkbox" id="t-b01" data-task="b01" disabled><label for="t-b01">Change the 3 drawer <code>&lt;h3&gt;</code> to <code>&lt;div&gt;</code> in <code>layout/theme.liquid</code></label><span class="who-wrap"><input type="text" class="who" data-who="b01" maxlength="28" placeholder="who?" aria-label="Person who did task B01" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="b01"></span></span><span class="ref">SEO-03</span></div>
+<div class="task" data-id="b02"><input type="checkbox" id="t-b02" data-task="b02" disabled><label for="t-b02">Delete the title suffix at <code>layout/theme.liquid:73</code></label><span class="who-wrap"><input type="text" class="who" data-who="b02" maxlength="28" placeholder="who?" aria-label="Person who did task B02" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="b02"></span></span><span class="ref">SEO-04</span></div>
+<div class="task" data-id="b03"><input type="checkbox" id="t-b03" data-task="b03" disabled><label for="t-b03">Add a real H1 to both homepages</label><span class="who-wrap"><input type="text" class="who" data-who="b03" maxlength="28" placeholder="who?" aria-label="Person who did task B03" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="b03"></span></span><span class="ref">SEO-03</span></div>
+<div class="task" data-id="b04"><input type="checkbox" id="t-b04" data-task="b04" disabled><label for="t-b04">Make the review-rating fallback omit the rating instead of publishing 4 stars</label><span class="who-wrap"><input type="text" class="who" data-who="b04" maxlength="28" placeholder="who?" aria-label="Person who did task B04" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="b04"></span></span><span class="ref">SEO-07</span></div>
+<div class="task" data-id="b05"><input type="checkbox" id="t-b05" data-task="b05" disabled><label for="t-b05">Delete <code>structured-data-product.liquid</code> and repoint the 3 sections that render it</label><span class="who-wrap"><input type="text" class="who" data-who="b05" maxlength="28" placeholder="who?" aria-label="Person who did task B05" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="b05"></span></span><span class="ref">SEO-09</span></div>
+<div class="task" data-id="b06"><input type="checkbox" id="t-b06" data-task="b06" disabled><label for="t-b06">Replace the hard-coded UK canonical and <code>force_current_site</code> with request-derived values</label><span class="who-wrap"><input type="text" class="who" data-who="b06" maxlength="28" placeholder="who?" aria-label="Person who did task B06" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="b06"></span></span><span class="ref">SEO-10</span></div>
+<div class="task" data-id="b07"><input type="checkbox" id="t-b07" data-task="b07" disabled><label for="t-b07">Add <code>BreadcrumbList</code> to the collection and article templates</label><span class="who-wrap"><input type="text" class="who" data-who="b07" maxlength="28" placeholder="who?" aria-label="Person who did task B07" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="b07"></span></span><span class="ref">SEO-06</span></div>
+<div class="task" data-id="b08"><input type="checkbox" id="t-b08" data-task="b08" disabled><label for="t-b08">Author <code>templates/agents.md.liquid</code> — your process, awards and stockists</label><span class="who-wrap"><input type="text" class="who" data-who="b08" maxlength="28" placeholder="who?" aria-label="Person who did task B08" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="b08"></span></span><span class="ref">AEO-01</span></div>
+<div class="task" data-id="b09"><input type="checkbox" id="t-b09" data-task="b09" disabled><label for="t-b09">Delete the 48 unreferenced sections and 18 leftover templates</label><span class="who-wrap"><input type="text" class="who" data-who="b09" maxlength="28" placeholder="who?" aria-label="Person who did task B09" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="b09"></span></span><span class="ref">SEO-13</span></div>
 </div>
 <div class="wl-group">
 <p class="gh">C &nbsp;&middot;&nbsp; Needs a decision first, then mechanical &nbsp;&middot;&nbsp; 5 items</p>
 <p class="gs">C1 gates C3: settle the URLs before building the hreflang map, or you will map to URLs you then redirect.</p>
-<div class="task" data-id="c01"><input type="checkbox" id="t-c01" data-task="c01"><label for="t-c01">Decide which single URL owns &ldquo;where to buy&rdquo; (three live today)</label><span class="who-wrap"><input type="text" class="who" data-who="c01" maxlength="28" placeholder="who?" aria-label="Person who did task C01" spellcheck="false"><span class="when" data-when="c01"></span></span><span class="ref">SEO-05</span></div>
-<div class="task" data-id="c02"><input type="checkbox" id="t-c02" data-task="c02"><label for="t-c02">Decide one global brand entity or two regional ones, then align the names</label><span class="who-wrap"><input type="text" class="who" data-who="c02" maxlength="28" placeholder="who?" aria-label="Person who did task C02" spellcheck="false"><span class="when" data-when="c02"></span></span><span class="ref">SEO-02</span></div>
-<div class="task" data-id="c03"><input type="checkbox" id="t-c03" data-task="c03"><label for="t-c03">Build the explicit UK&harr;US hreflang map &mdash; only after C1 is settled</label><span class="who-wrap"><input type="text" class="who" data-who="c03" maxlength="28" placeholder="who?" aria-label="Person who did task C03" spellcheck="false"><span class="when" data-when="c03"></span></span><span class="ref">SEO-01</span></div>
-<div class="task" data-id="c04"><input type="checkbox" id="t-c04" data-task="c04"><label for="t-c04">Move product FAQs to metafields and drop the hard-coded handle list</label><span class="who-wrap"><input type="text" class="who" data-who="c04" maxlength="28" placeholder="who?" aria-label="Person who did task C04" spellcheck="false"><span class="when" data-when="c04"></span></span><span class="ref">SEO-06</span></div>
-<div class="task" data-id="c05"><input type="checkbox" id="t-c05" data-task="c05"><label for="t-c05">Drive review markup from the review source for all 32 products</label><span class="who-wrap"><input type="text" class="who" data-who="c05" maxlength="28" placeholder="who?" aria-label="Person who did task C05" spellcheck="false"><span class="when" data-when="c05"></span></span><span class="ref">SEO-06</span></div>
+<div class="task" data-id="c01"><input type="checkbox" id="t-c01" data-task="c01" disabled><label for="t-c01">Decide which single URL owns &ldquo;where to buy&rdquo; (three live today)</label><span class="who-wrap"><input type="text" class="who" data-who="c01" maxlength="28" placeholder="who?" aria-label="Person who did task C01" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="c01"></span></span><span class="ref">SEO-05</span></div>
+<div class="task" data-id="c02"><input type="checkbox" id="t-c02" data-task="c02" disabled><label for="t-c02">Decide one global brand entity or two regional ones, then align the names</label><span class="who-wrap"><input type="text" class="who" data-who="c02" maxlength="28" placeholder="who?" aria-label="Person who did task C02" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="c02"></span></span><span class="ref">SEO-02</span></div>
+<div class="task" data-id="c03"><input type="checkbox" id="t-c03" data-task="c03" disabled><label for="t-c03">Build the explicit UK&harr;US hreflang map &mdash; only after C1 is settled</label><span class="who-wrap"><input type="text" class="who" data-who="c03" maxlength="28" placeholder="who?" aria-label="Person who did task C03" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="c03"></span></span><span class="ref">SEO-01</span></div>
+<div class="task" data-id="c04"><input type="checkbox" id="t-c04" data-task="c04" disabled><label for="t-c04">Move product FAQs to metafields and drop the hard-coded handle list</label><span class="who-wrap"><input type="text" class="who" data-who="c04" maxlength="28" placeholder="who?" aria-label="Person who did task C04" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="c04"></span></span><span class="ref">SEO-06</span></div>
+<div class="task" data-id="c05"><input type="checkbox" id="t-c05" data-task="c05" disabled><label for="t-c05">Drive review markup from the review source for all 32 products</label><span class="who-wrap"><input type="text" class="who" data-who="c05" maxlength="28" placeholder="who?" aria-label="Person who did task C05" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="c05"></span></span><span class="ref">SEO-06</span></div>
 </div>
 <div class="wl-group">
 <p class="gh">D &nbsp;&middot;&nbsp; Worth leaving for the specialist &nbsp;&middot;&nbsp; 1 items</p>
 <p class="gs">Needs measuring before fixing, and the fix carries real regression risk.</p>
-<div class="task" data-id="d01"><input type="checkbox" id="t-d01" data-task="d01"><label for="t-d01">Measure Core Web Vitals, then consolidate the inline script and style blocks</label><span class="who-wrap"><input type="text" class="who" data-who="d01" maxlength="28" placeholder="who?" aria-label="Person who did task D01" spellcheck="false"><span class="when" data-when="d01"></span></span><span class="ref">&mdash;</span></div>
+<div class="task" data-id="d01"><input type="checkbox" id="t-d01" data-task="d01" disabled><label for="t-d01">Measure Core Web Vitals, then consolidate the inline script and style blocks</label><span class="who-wrap"><input type="text" class="who" data-who="d01" maxlength="28" placeholder="who?" aria-label="Person who did task D01" spellcheck="false" readonly tabindex="-1"><span class="when" data-when="d01"></span></span><span class="ref">&mdash;</span></div>
 </div>
 </div>
-<p class="wl-note" id="wl-note">Ticking a box or entering a name publishes a new version of this page, so everyone sees the same record. The date is stamped for you when the box is ticked.</p>
+<p class="wl-note" id="wl-note">This mirror is updated when the register is republished. The shared worklist is the live record.</p>
 
 <script type="application/json" id="wl-baseline">{"v": 1, "ts": 0, "tasks": {}}</script>
 <script>
 (function(){
   "use strict";
-  var BASE, state = {}, mode = "pending", timer = null;
+  var BASE;
   try { BASE = JSON.parse(document.getElementById("wl-baseline").textContent); }
   catch(e){ BASE = {v:1, ts:0, tasks:{}}; }
-
+  var state = BASE.tasks || {};
   var TOTAL = document.querySelectorAll("#wl-body input[data-task]").length;
-
-  function norm(o){
-    return {done: !!(o && o.done), ts: (o && o.ts) || 0, who: (o && o.who) || ""};
-  }
-  function overlay(src){
-    if(!src) return;
-    for(var k in src){
-      if(!Object.prototype.hasOwnProperty.call(src,k)) continue;
-      var incoming = norm(src[k]), have = state[k];
-      if(!have || incoming.ts >= have.ts) state[k] = incoming;
-    }
-  }
-  function touch(id){
-    if(!state[id]) state[id] = norm(null);
-    state[id].ts = Date.now();
-    return state[id];
-  }
-
-  function lsGet(){
-    try { return JSON.parse(localStorage.getItem("bolle-worklist")||"null"); } catch(e){ return null; }
-  }
-  function lsSet(){
-    try { localStorage.setItem("bolle-worklist", JSON.stringify(state)); } catch(e){}
-  }
 
   function fmt(ts){
     if(!ts) return "";
@@ -537,93 +546,22 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
     } catch(e){ return ""; }
   }
 
-  function render(){
-    var done = 0;
-    document.querySelectorAll("#wl-body .task").forEach(function(row){
-      var id  = row.getAttribute("data-id");
-      var st  = state[id] || norm(null);
-      var box = row.querySelector("input[data-task]");
-      var who = row.querySelector("input.who");
-      var when= row.querySelector(".when");
-      if(box.checked !== st.done) box.checked = st.done;
-      row.classList.toggle("done", st.done);
-      if(document.activeElement !== who && who.value !== st.who) who.value = st.who;
-      when.textContent = st.done ? fmt(st.ts) : "";
-      if(st.done) done++;
-    });
-    document.getElementById("wl-count").textContent = done + " of " + TOTAL + " done";
-    document.getElementById("wl-bar").style.width = (TOTAL ? Math.round(done/TOTAL*100) : 0) + "%";
-  }
-
-  function setMode(m, text){
-    mode = m;
-    document.getElementById("wl-mode").textContent = text;
-  }
-
-  function save(){
-    if(timer) clearTimeout(timer);
-    timer = setTimeout(commit, 1200);
-  }
-
-  function commit(){
-    timer = null;
-    if(mode === "local"){ lsSet(); return; }
-    if(!window.claude || !window.claude.use){ fallback(); return; }
-    window.claude.use("artifact").then(function(api){
-      if(!api || !api.publish){ fallback(); return; }
-      return api.publish({"data/worklist.json": JSON.stringify({v:1, tasks:state})})
-        .then(function(){ setMode("shared", "saved for everyone"); })
-        .catch(function(err){
-          var code = err && err.code;
-          if(code === "conflict") return;
-          if(code === "rate_limited"){ setTimeout(commit, 5000); return; }
-          fallback();
-        });
-    }).catch(fallback);
-  }
-
-  function fallback(){
-    setMode("local", "saved on this device only");
-    document.getElementById("wl-note").textContent =
-      "Shared saving is not available in this view, so ticks and names are kept in this browser only. Send what is done, and by whom, to whoever maintains this page and it will be updated for everyone.";
-    lsSet();
-  }
-
-  var body = document.getElementById("wl-body");
-
-  body.addEventListener("change", function(e){
-    var box = e.target.closest("input[data-task]");
-    if(!box) return;
-    var id = box.getAttribute("data-task");
-    var st = touch(id);
-    st.done = box.checked;
-    render();
-    save();
+  var done = 0;
+  document.querySelectorAll("#wl-body .task").forEach(function(row){
+    var id = row.getAttribute("data-id");
+    var st = state[id] || {};
+    var box = row.querySelector("input[data-task]");
+    var who = row.querySelector("input.who");
+    var when = row.querySelector(".when");
+    box.checked = !!st.done;
+    row.classList.toggle("done", !!st.done);
+    who.value = st.who || "";
+    when.textContent = st.done ? fmt(st.ts) : "";
+    if(st.done) done++;
   });
-
-  body.addEventListener("input", function(e){
-    var f = e.target.closest("input.who");
-    if(!f) return;
-    var id = f.getAttribute("data-who");
-    var st = touch(id);
-    st.who = f.value.trim();
-    save();
-  });
-
-  overlay(BASE.tasks);
-  render();
-  setMode("pending", "checking…");
-
-  fetch("data/worklist.json", {cache:"no-store"}).then(function(r){
-    return r.ok ? r.json() : null;
-  }).then(function(d){
-    if(d && d.tasks) overlay(d.tasks);
-  }).catch(function(){}).then(function(){
-    var local = lsGet();
-    if(local) overlay(local);
-    render();
-    if(mode === "pending") setMode("ready", "ticks save for everyone");
-  });
+  document.getElementById("wl-count").textContent = done + " of " + TOTAL + " done";
+  document.getElementById("wl-bar").style.width = (TOTAL ? Math.round(done/TOTAL*100) : 0) + "%";
+  document.getElementById("wl-mode").textContent = "mirrors the shared worklist";
 })();
 </script>
 
