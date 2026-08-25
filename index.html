@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BOLLE SEO &amp; AEO Register</title>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="description" content="Pre-engagement SEO and AEO audit of the BOLLE storefronts, with an in-house worklist.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%BE%3C/text%3E%3C/svg%3E">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#FBF8F4;
+  --surface:#FFFFFF;
+  --sunk:#F3EEE6;
+  --ink:#16191D;
+  --ink-soft:#4C4A45;
+  --ink-faint:#7A756C;
+  --rule:#DED6C9;
+  --rule-strong:#C3B8A6;
+  --gold:#7C5F26;
+  --gold-soft:#9D7B3A;
+  --navy:#111820;
+  --sev-block:#8E2C24;
+  --sev-block-bg:#F6E7E4;
+  --sev-high:#8A5A16;
+  --sev-high-bg:#F8EEDC;
+  --sev-med:#4F6350;
+  --sev-med-bg:#EAF0E9;
+  --sev-ok:#2F5D45;
+  --sev-ok-bg:#E4EFE8;
+  --measure:68ch;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E141B;
+    --surface:#151D26;
+    --sunk:#1B242F;
+    --ink:#F0EAE1;
+    --ink-soft:#BDB5A8;
+    --ink-faint:#8B8477;
+    --rule:#2A3441;
+    --rule-strong:#3D4A59;
+    --gold:#D2AD75;
+    --gold-soft:#C09A5F;
+    --navy:#0A0F14;
+    --sev-block:#E8938A;
+    --sev-block-bg:#33201E;
+    --sev-high:#E0B473;
+    --sev-high-bg:#33281A;
+    --sev-med:#A9C2A8;
+    --sev-med-bg:#1E2A22;
+    --sev-ok:#8FC7A6;
+    --sev-ok-bg:#182A21;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E141B;
+  --surface:#151D26;
+  --sunk:#1B242F;
+  --ink:#F0EAE1;
+  --ink-soft:#BDB5A8;
+  --ink-faint:#8B8477;
+  --rule:#2A3441;
+  --rule-strong:#3D4A59;
+  --gold:#D2AD75;
+  --gold-soft:#C09A5F;
+  --navy:#0A0F14;
+  --sev-block:#E8938A;
+  --sev-block-bg:#33201E;
+  --sev-high:#E0B473;
+  --sev-high-bg:#33281A;
+  --sev-med:#A9C2A8;
+  --sev-med-bg:#1E2A22;
+  --sev-ok:#8FC7A6;
+  --sev-ok-bg:#182A21;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Source Sans 3","Helvetica Neue",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 28px 96px;}
+
+/* ---------- masthead ---------- */
+.masthead{
+  border-bottom:2px solid var(--ink);
+  padding:56px 0 20px;
+  margin-bottom:8px;
+}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:0 0 18px;
+}
+h1{
+  font-family:Marcellus,"Times New Roman",serif;
+  font-weight:400;
+  font-size:clamp(2.3rem,5.4vw,3.5rem);
+  line-height:1.06;
+  margin:0 0 18px;
+  text-wrap:balance;
+  letter-spacing:-.01em;
+}
+.standfirst{
+  max-width:var(--measure);
+  color:var(--ink-soft);
+  font-size:1.06rem;
+  margin:0 0 22px;
+}
+.meta-line{
+  display:flex;flex-wrap:wrap;gap:8px 26px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12px;color:var(--ink-faint);
+  padding-bottom:4px;
+}
+.meta-line b{color:var(--ink-soft);font-weight:500;}
+
+/* ---------- scorecard ---------- */
+.scorecard{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+  gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);
+  margin:34px 0 10px;
+}
+.tile{background:var(--surface);padding:16px 18px 18px;}
+.tile .n{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:1.75rem;font-weight:600;line-height:1.1;
+  font-variant-numeric:tabular-nums;
+  display:block;margin-bottom:5px;
+}
+.tile .k{
+  font-size:12.5px;line-height:1.35;color:var(--ink-faint);
+  text-transform:uppercase;letter-spacing:.06em;
+}
+.n.block{color:var(--sev-block);}
+.n.high{color:var(--sev-high);}
+.n.neutral{color:var(--gold);}
+.caption{
+  font-size:13px;color:var(--ink-faint);
+  font-style:italic;margin:0 0 44px;
+}
+
+/* ---------- section headers ---------- */
+h2{
+  font-family:Marcellus,"Times New Roman",serif;
+  font-weight:400;
+  font-size:1.85rem;
+  margin:56px 0 6px;
+  padding-top:22px;
+  border-top:1px solid var(--rule-strong);
+  letter-spacing:-.005em;
+}
+.sec-note{
+  color:var(--ink-faint);font-size:14.5px;
+  max-width:var(--measure);margin:0 0 30px;
+}
+
+/* ---------- register entries ---------- */
+.entry{
+  border-top:1px solid var(--rule);
+  padding:24px 0 26px;
+}
+.entry:last-of-type{border-bottom:1px solid var(--rule);}
+.entry-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;
+  gap:10px 14px;margin-bottom:10px;
+}
+.id{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12px;font-weight:600;letter-spacing:.05em;
+  color:var(--ink-faint);
+}
+.pill{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:3px 8px 2px;border:1px solid currentColor;
+}
+.pill.block{color:var(--sev-block);background:var(--sev-block-bg);}
+.pill.high{color:var(--sev-high);background:var(--sev-high-bg);}
+.pill.med{color:var(--sev-med);background:var(--sev-med-bg);}
+.pill.ok{color:var(--sev-ok);background:var(--sev-ok-bg);}
+.scope{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;color:var(--ink-faint);
+  margin-left:auto;
+}
+h3{
+  font-size:1.24rem;font-weight:600;
+  margin:0 0 10px;line-height:1.32;
+  flex-basis:100%;text-wrap:balance;
+}
+.entry p{margin:0 0 12px;max-width:var(--measure);}
+.entry p:last-child{margin-bottom:0;}
+.fix{
+  border-left:2px solid var(--gold);
+  padding:2px 0 2px 15px;
+  margin-top:14px;
+  max-width:var(--measure);
+}
+.fix b{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);display:block;margin-bottom:3px;font-weight:600;
+}
+.fix p{font-size:15.5px;color:var(--ink-soft);}
+
+code{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.855em;
+  background:var(--sunk);
+  padding:1.5px 5px;
+  border-radius:2px;
+  word-break:break-word;
+}
+
+/* ---------- evidence ---------- */
+.ev{
+  background:var(--sunk);
+  border:1px solid var(--rule);
+  padding:13px 16px;
+  margin:14px 0 4px;
+  overflow-x:auto;
+}
+.ev-label{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-faint);margin-bottom:8px;
+}
+.ev table{
+  border-collapse:collapse;width:100%;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12.5px;
+  font-variant-numeric:tabular-nums;
+}
+.ev th{
+  text-align:left;font-weight:600;color:var(--ink-faint);
+  border-bottom:1px solid var(--rule-strong);
+  padding:0 16px 6px 0;white-space:nowrap;
+}
+.ev td{
+  padding:5px 16px 5px 0;
+  border-bottom:1px solid var(--rule);
+  color:var(--ink-soft);vertical-align:top;
+}
+.ev tr:last-child td{border-bottom:none;}
+.ev td.num{text-align:right;padding-right:22px;color:var(--ink);}
+.bad{color:var(--sev-block);font-weight:600;}
+.ev ul{margin:0;padding-left:17px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12.5px;color:var(--ink-soft);line-height:1.75;}
+.ev ul li::marker{color:var(--ink-faint);}
+
+/* ---------- ok list ---------- */
+.oklist{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:0 34px;list-style:none;padding:0;margin:0;
+}
+.oklist li{
+  padding:9px 0 9px 21px;position:relative;
+  border-bottom:1px solid var(--rule);
+  font-size:15px;color:var(--ink-soft);
+}
+.oklist li::before{
+  content:"✓";position:absolute;left:0;top:9px;
+  color:var(--sev-ok);font-size:13px;font-weight:700;
+}
+.oklist li b{color:var(--ink);font-weight:600;}
+
+/* ---------- order of work ---------- */
+ol.plan{counter-reset:step;list-style:none;padding:0;margin:0;}
+ol.plan li{
+  counter-increment:step;
+  position:relative;padding:15px 0 15px 52px;
+  border-bottom:1px solid var(--rule);
+  max-width:var(--measure);
+}
+ol.plan li::before{
+  content:counter(step,decimal-leading-zero);
+  position:absolute;left:0;top:16px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12px;font-weight:600;color:var(--gold);
+  letter-spacing:.05em;
+}
+ol.plan b{font-weight:600;}
+ol.plan span{display:block;color:var(--ink-faint);font-size:14.5px;margin-top:2px;}
+
+
+/* ---------- owner pills ---------- */
+.owner{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 8px 2px;
+  border:1px dashed var(--rule-strong);
+  color:var(--ink-faint);
+}
+.owner.admin{color:var(--sev-med);border-color:var(--sev-med);}
+.owner.theme{color:var(--gold);border-color:var(--gold);}
+.owner.decision{color:var(--sev-high);border-color:var(--sev-high);}
+
+/* ---------- worklist ---------- */
+.wl-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 18px;margin:0 0 14px;}
+.wl-count{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:13px;font-weight:600;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.wl-mode{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-faint);margin-left:auto;
+}
+.bar{height:5px;background:var(--sunk);border:1px solid var(--rule);margin:0 0 30px;}
+.bar i{display:block;height:100%;background:var(--gold);transition:width .28s ease;}
+.wl-group{margin:0 0 26px;}
+.wl-group > p.gh{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-faint);margin:0 0 2px;
+  padding-bottom:7px;border-bottom:1px solid var(--rule-strong);
+}
+.wl-group > p.gs{font-size:13.5px;color:var(--ink-faint);margin:8px 0 4px;max-width:var(--measure);}
+.task{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:10px 0;border-bottom:1px solid var(--rule);
+}
+.task input{
+  appearance:none;-webkit-appearance:none;
+  width:16px;height:16px;flex:0 0 16px;margin:3px 0 0;
+  border:1.5px solid var(--rule-strong);background:var(--surface);
+  cursor:pointer;position:relative;border-radius:2px;
+}
+.task input:checked{background:var(--gold);border-color:var(--gold);}
+.task input:checked::after{
+  content:"";position:absolute;left:4px;top:1px;
+  width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;
+  transform:rotate(45deg);
+}
+.task input:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.task label{flex:1;cursor:pointer;font-size:15.5px;line-height:1.5;}
+.task .ref{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;color:var(--ink-faint);
+  letter-spacing:.06em;white-space:nowrap;padding-top:3px;
+}
+.task.done label{color:var(--ink-faint);text-decoration:line-through;text-decoration-thickness:1px;}
+
+.who-wrap{display:flex;flex-direction:column;gap:2px;flex:0 0 132px;}
+.task input.who{
+  appearance:auto;-webkit-appearance:none;
+  width:100%;height:auto;flex:none;margin:0;
+  font-family:"Source Sans 3","Helvetica Neue",Arial,sans-serif;
+  font-size:13.5px;color:var(--ink);
+  background:var(--surface);
+  border:1px solid var(--rule);
+  border-radius:2px;
+  padding:3px 7px;
+  cursor:text;
+}
+.task input.who::placeholder{color:var(--ink-faint);opacity:.75;}
+.task input.who:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold);}
+.task input.who:checked{background:var(--surface);}
+.task input.who::after{content:none;}
+.when{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10px;color:var(--ink-faint);
+  letter-spacing:.04em;min-height:12px;padding-left:1px;
+}
+.wl-legend{
+  display:flex;gap:0 26px;flex-wrap:wrap;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-faint);margin:0 0 8px;
+}
+@media (max-width:620px){
+  .task{flex-wrap:wrap;}
+  .task label{flex:1 1 100%;order:2;}
+  .who-wrap{order:3;flex:1 1 auto;}
+  .task .ref{order:4;margin-left:auto;}
+}
+
+.wl-note{font-size:13px;color:var(--ink-faint);font-style:italic;margin:4px 0 0;}
+
+footer{
+  margin-top:64px;padding-top:22px;
+  border-top:2px solid var(--ink);
+  font-size:13.5px;color:var(--ink-faint);
+  max-width:var(--measure);
+}
+footer p{margin:0 0 9px;}
+a{color:var(--gold);text-decoration-thickness:1px;text-underline-offset:2px;}
+a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+@media (max-width:620px){
+  body{font-size:16px;}
+  .wrap{padding:0 18px 64px;}
+  .scope{margin-left:0;flex-basis:100%;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">Pre-engagement audit · 24 August 2026</p>
+  <h1>What to clean up before an SEO&nbsp;lead touches anything</h1>
+  <p class="standfirst">A full crawl of both live BOLLE storefronts, checked for the technical and structural faults that would distort or waste any SEO/AEO work started on top of them. Findings are ordered by what blocks work, not by effort.</p>
+  <div class="meta-line">
+    <span><b>Scope</b> www.bolledrinks.co.uk · www.bolledrinks.com</span>
+    <span><b>Method</b> full sitemap crawl, 131 live pages</span>
+    <span><b>Status</b> nothing changed — audit only</span>
+  </div>
+</header>
+
+<div class="scorecard">
+  <div class="tile"><span class="n neutral">131</span><span class="k">Live pages crawled</span></div>
+  <div class="tile"><span class="n block">32</span><span class="k">Pages with a broken hreflang link</span></div>
+  <div class="tile"><span class="n block">131</span><span class="k">Pages whose headings start at H3</span></div>
+  <div class="tile"><span class="n high">80</span><span class="k">Titles over 60 characters</span></div>
+  <div class="tile"><span class="n high">23</span><span class="k">Products missing review markup</span></div>
+  <div class="tile"><span class="n neutral">0</span><span class="k">Broken pages or bad JSON-LD</span></div>
+</div>
+<p class="caption">Every URL in both sitemaps returned 200 and every structured-data block parsed. The faults below are in what the pages <em>say</em>, not whether they load.</p>
+
+
+<h2 id="worklist">In-house worklist</h2>
+<p class="sec-note">26 tasks, grouped by who can do them rather than by severity. Tick as you go and put your name against what you did &mdash; ticks, names and dates save for everyone with access to this page. 25 of the 26 need no SEO specialist.</p>
+
+<div class="wl-head">
+  <span class="wl-count" id="wl-count">0 of 26 done</span>
+  <span class="wl-mode" id="wl-mode">&nbsp;</span>
+</div>
+<div class="bar"><i id="wl-bar" style="width:0%"></i></div>
+<p class="wl-legend"><span>Tick &middot; done</span><span>Name &middot; who did it</span><span>Date &middot; stamped automatically</span><span>Right &middot; register entry</span></p>
+
+<div id="wl-body">
+<div class="wl-group">
+<p class="gh">A &nbsp;&middot;&nbsp; Shopify admin &mdash; no code &nbsp;&middot;&nbsp; 11 items</p>
+<p class="gs">No deploy risk, and it can run in parallel with the theme work. This is most of the hours, because it is mostly writing.</p>
+<div class="task" data-id="a01"><input type="checkbox" id="t-a01" data-task="a01"><label for="t-a01">Fix <code>/pages/shipping-policy</code> title &amp; description on the US site (currently the privacy policy's)</label><span class="who-wrap"><input type="text" class="who" data-who="a01" maxlength="28" placeholder="who?" aria-label="Person who did task A01" spellcheck="false"><span class="when" data-when="a01"></span></span><span class="ref">SEO-08</span></div>
+<div class="task" data-id="a02"><input type="checkbox" id="t-a02" data-task="a02"><label for="t-a02">Fix <code>/pages/shipping-policy</code> title &amp; description on the UK site (currently the returns policy's)</label><span class="who-wrap"><input type="text" class="who" data-who="a02" maxlength="28" placeholder="who?" aria-label="Person who did task A02" spellcheck="false"><span class="when" data-when="a02"></span></span><span class="ref">SEO-08</span></div>
+<div class="task" data-id="a03"><input type="checkbox" id="t-a03" data-task="a03"><label for="t-a03">Write the 14 missing meta descriptions</label><span class="who-wrap"><input type="text" class="who" data-who="a03" maxlength="28" placeholder="who?" aria-label="Person who did task A03" spellcheck="false"><span class="when" data-when="a03"></span></span><span class="ref">SEO-08</span></div>
+<div class="task" data-id="a04"><input type="checkbox" id="t-a04" data-task="a04"><label for="t-a04">Split the duplicate title/description pairs — UK magnums, US champagne vs sparkling</label><span class="who-wrap"><input type="text" class="who" data-who="a04" maxlength="28" placeholder="who?" aria-label="Person who did task A04" spellcheck="false"><span class="when" data-when="a04"></span></span><span class="ref">SEO-08</span></div>
+<div class="task" data-id="a05"><input type="checkbox" id="t-a05" data-task="a05"><label for="t-a05">Rewrite the ~20 blog titles currently cut mid-word</label><span class="who-wrap"><input type="text" class="who" data-who="a05" maxlength="28" placeholder="who?" aria-label="Person who did task A05" spellcheck="false"><span class="when" data-when="a05"></span></span><span class="ref">SEO-04</span></div>
+<div class="task" data-id="a06"><input type="checkbox" id="t-a06" data-task="a06"><label for="t-a06">Create redirects from the retired &ldquo;where to buy&rdquo; URLs to the chosen one</label><span class="who-wrap"><input type="text" class="who" data-who="a06" maxlength="28" placeholder="who?" aria-label="Person who did task A06" spellcheck="false"><span class="when" data-when="a06"></span></span><span class="ref">SEO-05</span></div>
+<div class="task" data-id="a07"><input type="checkbox" id="t-a07" data-task="a07"><label for="t-a07">Unpublish the 4 internal UK collections so they leave the sitemap</label><span class="who-wrap"><input type="text" class="who" data-who="a07" maxlength="28" placeholder="who?" aria-label="Person who did task A07" spellcheck="false"><span class="when" data-when="a07"></span></span><span class="ref">SEO-05</span></div>
+<div class="task" data-id="a08"><input type="checkbox" id="t-a08" data-task="a08"><label for="t-a08">Unpublish <code>bolle-locations-all-tiles</code> and <code>purchase-survey</code> on both sites</label><span class="who-wrap"><input type="text" class="who" data-who="a08" maxlength="28" placeholder="who?" aria-label="Person who did task A08" spellcheck="false"><span class="when" data-when="a08"></span></span><span class="ref">SEO-05</span></div>
+<div class="task" data-id="a09"><input type="checkbox" id="t-a09" data-task="a09"><label for="t-a09">Normalise the <code>vendor</code> field across all products to one spelling</label><span class="who-wrap"><input type="text" class="who" data-who="a09" maxlength="28" placeholder="who?" aria-label="Person who did task A09" spellcheck="false"><span class="when" data-when="a09"></span></span><span class="ref">SEO-02</span></div>
+<div class="task" data-id="a10"><input type="checkbox" id="t-a10" data-task="a10"><label for="t-a10">Set the store locale to en-GB and en-US respectively</label><span class="who-wrap"><input type="text" class="who" data-who="a10" maxlength="28" placeholder="who?" aria-label="Person who did task A10" spellcheck="false"><span class="when" data-when="a10"></span></span><span class="ref">SEO-11</span></div>
+<div class="task" data-id="a11"><input type="checkbox" id="t-a11" data-task="a11"><label for="t-a11">Add alt text to the 57 images that have none</label><span class="who-wrap"><input type="text" class="who" data-who="a11" maxlength="28" placeholder="who?" aria-label="Person who did task A11" spellcheck="false"><span class="when" data-when="a11"></span></span><span class="ref">SEO-12</span></div>
+</div>
+<div class="wl-group">
+<p class="gh">B &nbsp;&middot;&nbsp; Theme edits &mdash; one batch &nbsp;&middot;&nbsp; 9 items</p>
+<p class="gs">Four of these are single-line changes in one file. Follows your existing register and change-doc practice.</p>
+<div class="task" data-id="b01"><input type="checkbox" id="t-b01" data-task="b01"><label for="t-b01">Change the 3 drawer <code>&lt;h3&gt;</code> to <code>&lt;div&gt;</code> in <code>layout/theme.liquid</code></label><span class="who-wrap"><input type="text" class="who" data-who="b01" maxlength="28" placeholder="who?" aria-label="Person who did task B01" spellcheck="false"><span class="when" data-when="b01"></span></span><span class="ref">SEO-03</span></div>
+<div class="task" data-id="b02"><input type="checkbox" id="t-b02" data-task="b02"><label for="t-b02">Delete the title suffix at <code>layout/theme.liquid:73</code></label><span class="who-wrap"><input type="text" class="who" data-who="b02" maxlength="28" placeholder="who?" aria-label="Person who did task B02" spellcheck="false"><span class="when" data-when="b02"></span></span><span class="ref">SEO-04</span></div>
+<div class="task" data-id="b03"><input type="checkbox" id="t-b03" data-task="b03"><label for="t-b03">Add a real H1 to both homepages</label><span class="who-wrap"><input type="text" class="who" data-who="b03" maxlength="28" placeholder="who?" aria-label="Person who did task B03" spellcheck="false"><span class="when" data-when="b03"></span></span><span class="ref">SEO-03</span></div>
+<div class="task" data-id="b04"><input type="checkbox" id="t-b04" data-task="b04"><label for="t-b04">Make the review-rating fallback omit the rating instead of publishing 4 stars</label><span class="who-wrap"><input type="text" class="who" data-who="b04" maxlength="28" placeholder="who?" aria-label="Person who did task B04" spellcheck="false"><span class="when" data-when="b04"></span></span><span class="ref">SEO-07</span></div>
+<div class="task" data-id="b05"><input type="checkbox" id="t-b05" data-task="b05"><label for="t-b05">Delete <code>structured-data-product.liquid</code> and repoint the 3 sections that render it</label><span class="who-wrap"><input type="text" class="who" data-who="b05" maxlength="28" placeholder="who?" aria-label="Person who did task B05" spellcheck="false"><span class="when" data-when="b05"></span></span><span class="ref">SEO-09</span></div>
+<div class="task" data-id="b06"><input type="checkbox" id="t-b06" data-task="b06"><label for="t-b06">Replace the hard-coded UK canonical and <code>force_current_site</code> with request-derived values</label><span class="who-wrap"><input type="text" class="who" data-who="b06" maxlength="28" placeholder="who?" aria-label="Person who did task B06" spellcheck="false"><span class="when" data-when="b06"></span></span><span class="ref">SEO-10</span></div>
+<div class="task" data-id="b07"><input type="checkbox" id="t-b07" data-task="b07"><label for="t-b07">Add <code>BreadcrumbList</code> to the collection and article templates</label><span class="who-wrap"><input type="text" class="who" data-who="b07" maxlength="28" placeholder="who?" aria-label="Person who did task B07" spellcheck="false"><span class="when" data-when="b07"></span></span><span class="ref">SEO-06</span></div>
+<div class="task" data-id="b08"><input type="checkbox" id="t-b08" data-task="b08"><label for="t-b08">Author <code>templates/agents.md.liquid</code> — your process, awards and stockists</label><span class="who-wrap"><input type="text" class="who" data-who="b08" maxlength="28" placeholder="who?" aria-label="Person who did task B08" spellcheck="false"><span class="when" data-when="b08"></span></span><span class="ref">AEO-01</span></div>
+<div class="task" data-id="b09"><input type="checkbox" id="t-b09" data-task="b09"><label for="t-b09">Delete the 48 unreferenced sections and 18 leftover templates</label><span class="who-wrap"><input type="text" class="who" data-who="b09" maxlength="28" placeholder="who?" aria-label="Person who did task B09" spellcheck="false"><span class="when" data-when="b09"></span></span><span class="ref">SEO-13</span></div>
+</div>
+<div class="wl-group">
+<p class="gh">C &nbsp;&middot;&nbsp; Needs a decision first, then mechanical &nbsp;&middot;&nbsp; 5 items</p>
+<p class="gs">C1 gates C3: settle the URLs before building the hreflang map, or you will map to URLs you then redirect.</p>
+<div class="task" data-id="c01"><input type="checkbox" id="t-c01" data-task="c01"><label for="t-c01">Decide which single URL owns &ldquo;where to buy&rdquo; (three live today)</label><span class="who-wrap"><input type="text" class="who" data-who="c01" maxlength="28" placeholder="who?" aria-label="Person who did task C01" spellcheck="false"><span class="when" data-when="c01"></span></span><span class="ref">SEO-05</span></div>
+<div class="task" data-id="c02"><input type="checkbox" id="t-c02" data-task="c02"><label for="t-c02">Decide one global brand entity or two regional ones, then align the names</label><span class="who-wrap"><input type="text" class="who" data-who="c02" maxlength="28" placeholder="who?" aria-label="Person who did task C02" spellcheck="false"><span class="when" data-when="c02"></span></span><span class="ref">SEO-02</span></div>
+<div class="task" data-id="c03"><input type="checkbox" id="t-c03" data-task="c03"><label for="t-c03">Build the explicit UK&harr;US hreflang map &mdash; only after C1 is settled</label><span class="who-wrap"><input type="text" class="who" data-who="c03" maxlength="28" placeholder="who?" aria-label="Person who did task C03" spellcheck="false"><span class="when" data-when="c03"></span></span><span class="ref">SEO-01</span></div>
+<div class="task" data-id="c04"><input type="checkbox" id="t-c04" data-task="c04"><label for="t-c04">Move product FAQs to metafields and drop the hard-coded handle list</label><span class="who-wrap"><input type="text" class="who" data-who="c04" maxlength="28" placeholder="who?" aria-label="Person who did task C04" spellcheck="false"><span class="when" data-when="c04"></span></span><span class="ref">SEO-06</span></div>
+<div class="task" data-id="c05"><input type="checkbox" id="t-c05" data-task="c05"><label for="t-c05">Drive review markup from the review source for all 32 products</label><span class="who-wrap"><input type="text" class="who" data-who="c05" maxlength="28" placeholder="who?" aria-label="Person who did task C05" spellcheck="false"><span class="when" data-when="c05"></span></span><span class="ref">SEO-06</span></div>
+</div>
+<div class="wl-group">
+<p class="gh">D &nbsp;&middot;&nbsp; Worth leaving for the specialist &nbsp;&middot;&nbsp; 1 items</p>
+<p class="gs">Needs measuring before fixing, and the fix carries real regression risk.</p>
+<div class="task" data-id="d01"><input type="checkbox" id="t-d01" data-task="d01"><label for="t-d01">Measure Core Web Vitals, then consolidate the inline script and style blocks</label><span class="who-wrap"><input type="text" class="who" data-who="d01" maxlength="28" placeholder="who?" aria-label="Person who did task D01" spellcheck="false"><span class="when" data-when="d01"></span></span><span class="ref">&mdash;</span></div>
+</div>
+</div>
+<p class="wl-note" id="wl-note">Ticking a box or entering a name publishes a new version of this page, so everyone sees the same record. The date is stamped for you when the box is ticked.</p>
+
+<script type="application/json" id="wl-baseline">{"v": 1, "ts": 0, "tasks": {}}</script>
+<script>
+(function(){
+  "use strict";
+  var BASE, state = {}, mode = "pending", timer = null;
+  try { BASE = JSON.parse(document.getElementById("wl-baseline").textContent); }
+  catch(e){ BASE = {v:1, ts:0, tasks:{}}; }
+
+  var TOTAL = document.querySelectorAll("#wl-body input[data-task]").length;
+
+  function norm(o){
+    return {done: !!(o && o.done), ts: (o && o.ts) || 0, who: (o && o.who) || ""};
+  }
+  function overlay(src){
+    if(!src) return;
+    for(var k in src){
+      if(!Object.prototype.hasOwnProperty.call(src,k)) continue;
+      var incoming = norm(src[k]), have = state[k];
+      if(!have || incoming.ts >= have.ts) state[k] = incoming;
+    }
+  }
+  function touch(id){
+    if(!state[id]) state[id] = norm(null);
+    state[id].ts = Date.now();
+    return state[id];
+  }
+
+  function lsGet(){
+    try { return JSON.parse(localStorage.getItem("bolle-worklist")||"null"); } catch(e){ return null; }
+  }
+  function lsSet(){
+    try { localStorage.setItem("bolle-worklist", JSON.stringify(state)); } catch(e){}
+  }
+
+  function fmt(ts){
+    if(!ts) return "";
+    try {
+      var d = new Date(ts);
+      return String(d.getDate()).padStart(2,"0") + " " +
+        ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()];
+    } catch(e){ return ""; }
+  }
+
+  function render(){
+    var done = 0;
+    document.querySelectorAll("#wl-body .task").forEach(function(row){
+      var id  = row.getAttribute("data-id");
+      var st  = state[id] || norm(null);
+      var box = row.querySelector("input[data-task]");
+      var who = row.querySelector("input.who");
+      var when= row.querySelector(".when");
+      if(box.checked !== st.done) box.checked = st.done;
+      row.classList.toggle("done", st.done);
+      if(document.activeElement !== who && who.value !== st.who) who.value = st.who;
+      when.textContent = st.done ? fmt(st.ts) : "";
+      if(st.done) done++;
+    });
+    document.getElementById("wl-count").textContent = done + " of " + TOTAL + " done";
+    document.getElementById("wl-bar").style.width = (TOTAL ? Math.round(done/TOTAL*100) : 0) + "%";
+  }
+
+  function setMode(m, text){
+    mode = m;
+    document.getElementById("wl-mode").textContent = text;
+  }
+
+  function save(){
+    if(timer) clearTimeout(timer);
+    timer = setTimeout(commit, 1200);
+  }
+
+  function commit(){
+    timer = null;
+    if(mode === "local"){ lsSet(); return; }
+    if(!window.claude || !window.claude.use){ fallback(); return; }
+    window.claude.use("artifact").then(function(api){
+      if(!api || !api.publish){ fallback(); return; }
+      return api.publish({"data/worklist.json": JSON.stringify({v:1, tasks:state})})
+        .then(function(){ setMode("shared", "saved for everyone"); })
+        .catch(function(err){
+          var code = err && err.code;
+          if(code === "conflict") return;
+          if(code === "rate_limited"){ setTimeout(commit, 5000); return; }
+          fallback();
+        });
+    }).catch(fallback);
+  }
+
+  function fallback(){
+    setMode("local", "saved on this device only");
+    document.getElementById("wl-note").textContent =
+      "This view cannot write to the page, so ticks and names are kept in this browser only. Tell Claude what is done and by whom, and it will update the shared copy.";
+    lsSet();
+  }
+
+  var body = document.getElementById("wl-body");
+
+  body.addEventListener("change", function(e){
+    var box = e.target.closest("input[data-task]");
+    if(!box) return;
+    var id = box.getAttribute("data-task");
+    var st = touch(id);
+    st.done = box.checked;
+    render();
+    save();
+  });
+
+  body.addEventListener("input", function(e){
+    var f = e.target.closest("input.who");
+    if(!f) return;
+    var id = f.getAttribute("data-who");
+    var st = touch(id);
+    st.who = f.value.trim();
+    save();
+  });
+
+  overlay(BASE.tasks);
+  render();
+  setMode("pending", "checking…");
+
+  fetch("data/worklist.json", {cache:"no-store"}).then(function(r){
+    return r.ok ? r.json() : null;
+  }).then(function(d){
+    if(d && d.tasks) overlay(d.tasks);
+  }).catch(function(){}).then(function(){
+    var local = lsGet();
+    if(local) overlay(local);
+    render();
+    if(mode === "pending") setMode("ready", "ticks save for everyone");
+  });
+})();
+</script>
+
+<h2>The headline</h2>
+<p class="sec-note">Three things would actively mislead an incoming specialist. Everything else is ordinary tidying.</p>
+
+<p style="max-width:var(--measure);">The two storefronts are wired together as a UK/US pair, but <strong>they don't share product URLs</strong> — the UK sells <code>/products/sparkling-rose</code> where the US sells <code>/products/rose</code>. The international linking was built by mirroring the URL path across domains, so on the brand's three flagship wines it points at addresses that redirect or don't exist. Separately, both sites tell search engines they are the <em>same</em> company entity, under a single identifier that carries three different company names. And the homepage of each site has no H1 at all.</p>
+
+<h2>Blocking — fix before any SEO work begins</h2>
+<p class="sec-note">These distort the measurements a specialist would take in week one, so doing them later means redoing the analysis.</p>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-01</span><span class="owner theme">Theme · gated</span><span class="pill block">Blocking</span>
+    <span class="scope">32 of 131 pages · both sites</span>
+    <h3>International (hreflang) links point at redirects and dead URLs, including all three flagship wines</h3>
+  </div>
+  <p>Each page declares a UK and a US counterpart by taking its own path and swapping the domain. That assumption holds for 99 pages and fails for 32, because the two stores use different handles for the same wine. Google discards a whole hreflang cluster when the return link doesn't resolve, so for the affected pages the two sites currently read as unrelated duplicates competing with each other rather than as regional variants.</p>
+  <div class="ev">
+    <div class="ev-label">Flagship products — UK page → declared US counterpart</div>
+    <table>
+      <tr><th>UK page</th><th>Declares US alternate</th><th>Result</th></tr>
+      <tr><td>/products/sparkling-rose</td><td>.com/products/sparkling-rose</td><td class="bad">301 → /products/rose</td></tr>
+      <tr><td>/products/sparkling-blanc-de-blancs</td><td>.com/products/sparkling-blanc-de-blancs</td><td class="bad">301 → /products/blanc-de-blancs</td></tr>
+      <tr><td>/products/still-chardonnay</td><td>.com/products/still-chardonnay</td><td class="bad">301 → /products/chardonnay</td></tr>
+      <tr><td>/products/rose-demi</td><td>.com/products/rose-demi</td><td class="bad">404</td></tr>
+      <tr><td>/products/sparkling-rose-magnum</td><td>.com/products/sparkling-rose-magnum</td><td class="bad">404</td></tr>
+      <tr><td>/products/bolle-founders-selection</td><td>.com/products/bolle-founders-selection</td><td class="bad">404</td></tr>
+    </table>
+  </div>
+  <div class="ev">
+    <div class="ev-label">Also affected — 11 US-only pages point at UK URLs that 404, and the x-default with them</div>
+    <ul>
+      <li>/pages/best-non-alcoholic-wine · /pages/non-alcoholic-champagne — 404 on UK</li>
+      <li>/pages/trade-wholesale — 301 to UK /pages/bolle-trade</li>
+      <li>/products/still-rose · /products/sparkling-rose-demi · /products/bolle-sparkling-rose-magnum — 404 on UK</li>
+      <li>UK /blogs/news → US /blogs/news — 301 to /blogs/journal</li>
+      <li>6 UK multi-bottle cases + /pages/store-locator + /collections/bolle-wines-mixed-cases — all 404 on US</li>
+    </ul>
+  </div>
+  <div class="fix"><b>What needs doing</b><p>Replace path-mirroring with an explicit UK↔US map keyed on the product, and emit an alternate only where a real counterpart exists. Where a page genuinely has no counterpart, omit the tag rather than guessing. The <code>x-default</code> needs the same treatment — it currently points at UK 404s.</p></div>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-02</span><span class="owner decision">Decision + Admin</span><span class="pill block">Blocking</span>
+    <span class="scope">All 131 pages</span>
+    <h3>One company identifier carries three different company names</h3>
+  </div>
+  <p>Both sites publish their Organization data under the single identifier <code>bolledrinks.co.uk/#organization</code>. That is a legitimate choice — one global brand entity — but the same identifier is used for three different names on the same page, which makes the entity self-contradictory at exactly the moment answer engines are trying to resolve who BOLLE is.</p>
+  <div class="ev">
+    <div class="ev-label">Same @id, US product page</div>
+    <table>
+      <tr><th>Type</th><th>Name declared</th><th>Identifier</th></tr>
+      <tr><td>Organization</td><td>BOLLE Drinks</td><td>…co.uk/#organization</td></tr>
+      <tr><td>Organization</td><td class="bad">Bolle Drinks Limited</td><td>…co.uk/#organization</td></tr>
+      <tr><td>Organization</td><td class="bad">Bolle Drinks USA</td><td>…co.uk/#organization</td></tr>
+      <tr><td>Brand</td><td class="bad">BOLLE</td><td>…co.uk/#organization</td></tr>
+    </table>
+  </div>
+  <p>On the US storefront that entity also declares <code>"url": "https://www.bolledrinks.co.uk"</code> and a London, GB address as its only location — so the US site publishes no US-facing entity signal at all. This compounds a problem already logged internally: the Shopify <em>vendor</em> field is inconsistent across products (some <code>BOLLE</code>, some <code>Bolle Drinks</code>), and that field feeds the same markup plus every sales-channel feed.</p>
+  <div class="fix"><b>What needs doing</b><p>Decide once whether BOLLE is one global entity or two regional ones, then make names consistent everywhere: use <code>name</code> for the trading name and <code>legalName</code> for the registered company, never a third variant on the same identifier. Align the vendor field in Shopify in the same pass — it is the upstream source.</p></div>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-03</span><span class="owner theme">Theme</span><span class="pill block">Blocking</span>
+    <span class="scope">Both homepages · 131 pages for hierarchy</span>
+    <h3>Neither homepage has an H1, and every page's headings begin at H3</h3>
+  </div>
+  <p>Both homepages carry roughly 840 words with no H1 element. Separately, the mobile navigation drawer renders three <code>&lt;h3&gt;</code> section titles — Shop, Learn, Contact — before the main content on <em>every</em> page, so the document outline opens at H3 and then jumps back to H1. Product pages then skip H1 → H3 again for the size options.</p>
+  <div class="ev">
+    <div class="ev-label">Heading order in source, US product page</div>
+    <ul>
+      <li>h3 "Shop"  ← nav drawer</li>
+      <li>h3 "Learn"  ← nav drawer</li>
+      <li>h3 "Contact"  ← nav drawer</li>
+      <li>h1 "Blanc de Blancs"  ← the actual page title</li>
+      <li>h3 "750ml Bottle" / "375ml Demi" / "1.5L Magnum"</li>
+      <li>h2 "Awards"</li>
+    </ul>
+  </div>
+  <div class="fix"><b>What needs doing</b><p>The drawer titles are navigation labels, not document structure — change them to <code>div</code> or <code>span</code> with the existing styling. That single edit corrects the outline on all 131 pages. Then give each homepage a real H1 carrying its primary term, and demote the product size-option headings to H2-level or below the fold structure.</p></div>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-04</span><span class="owner theme">Theme + Admin</span><span class="pill block">Blocking</span>
+    <span class="scope">80 of 126 pages</span>
+    <h3>Every title has the shop name appended twice over, and blog titles are cut mid-word</h3>
+  </div>
+  <p>The theme appends <code>– Bolle Drinks USA</code> / <code>– BOLLE Drinks UK</code> unless the title already contains the shop name. Titles say "BOLLE", not "Bolle Drinks USA", so the guard never fires and the suffix is always added — pushing 80 titles past the point where Google truncates them. On blog posts the underlying title is separately capped around 70 characters, so the suffix lands after a word that has already been chopped.</p>
+  <div class="ev">
+    <div class="ev-label">Live titles, US blog</div>
+    <table>
+      <tr><th>Chars</th><th>Title as served</th></tr>
+      <tr><td class="num">97</td><td>Is 0.5% ABV Really Alcohol Free? What Non-Alcoholic Wine Labels Don't Tell You – Bolle Drinks USA</td></tr>
+      <tr><td class="num">89</td><td>Non Alcoholic Wine and the Innovator's Dilemma: A Path Forward for the<span class="bad"> – Bolle Drinks USA</span></td></tr>
+      <tr><td class="num">89</td><td>How to Choose a Non-Alcoholic Wine: It's All in the Label (the Back La<span class="bad"> – Bolle Drinks USA</span></td></tr>
+      <tr><td class="num">89</td><td>BOLLE Drinks Appoints Alluvial Wines &amp; Spirts as California Distributi<span class="bad"> – Bolle Drinks USA</span></td></tr>
+    </table>
+  </div>
+  <div class="fix"><b>What needs doing</b><p>Drop the automatic suffix and let each page's title stand on its own — the brand already appears inside most of them. Then rewrite the blog titles that are currently truncated; there are roughly 20 across the two sites. Note "Spirts" for "Spirits" in the live title above.</p></div>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-05</span><span class="owner decision">Decision + Admin</span><span class="pill block">Blocking</span>
+    <span class="scope">~14 URLs · UK worse than US</span>
+    <h3>Internal working pages and duplicate routes are in the public sitemap, and nothing is set to noindex</h3>
+  </div>
+  <p>Not one page across either site carries a <code>noindex</code> instruction, so everything submitted is eligible to rank — including staging pages and collections that were clearly built as internal plumbing. Their names are visible in search results as they stand.</p>
+  <div class="ev">
+    <div class="ev-label">In the UK sitemap, all redirecting to /collections/bolle-wines</div>
+    <ul>
+      <li>/collections/not-bdb-for-the-bdb-cross-sell-product-page</li>
+      <li>/collections/not-rose-for-the-rose-cross-sell-product-page</li>
+      <li>/collections/meta-feed-must-be-kept-updated</li>
+      <li>/collections/magnums</li>
+    </ul>
+  </div>
+  <div class="ev">
+    <div class="ev-label">Duplicate and orphan routes competing for the same intent</div>
+    <table>
+      <tr><th>Intent</th><th>Live URLs</th><th>Site</th></tr>
+      <tr><td>Where to buy</td><td class="bad">/pages/locations · /pages/where-to-find · /pages/store-locator</td><td>UK (3) · US (2)</td></tr>
+      <tr><td>Shop all</td><td class="bad">/collections/shop → /collections/bolle-wines</td><td>both</td></tr>
+      <tr><td>Blog</td><td class="bad">/blogs/news (97 words) · /blogs/journal</td><td>UK</td></tr>
+      <tr><td>Staging</td><td class="bad">/pages/bolle-locations-all-tiles · /pages/purchase-survey</td><td>both</td></tr>
+    </table>
+  </div>
+  <div class="fix"><b>What needs doing</b><p>Pick one canonical URL per intent — the "where to buy" triplet needs a content decision, not a technical one — then redirect the losers and remove the internal collections from the sitemap. Set <code>noindex</code> on the staging and survey pages. This is worth doing first because duplicate routes make every ranking report ambiguous.</p></div>
+</div>
+
+<h2>High — do these in the first fortnight</h2>
+<p class="sec-note">Real ranking and answer-engine cost, but they won't corrupt a specialist's baseline measurements.</p>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-06</span><span class="owner theme">Theme</span><span class="pill high">High</span>
+    <span class="scope">23 of 32 products</span>
+    <h3>Most products publish no review stars, and FAQ markup is limited to a hard-coded list of five</h3>
+  </div>
+  <p>The product markup itself is well built — it carries price validity, shipping, returns, condition and barcode. The gap is coverage. Review ratings appear on only a handful of products, so the rest forfeit star ratings in search results. FAQ content is gated on a hand-written list of product handles, meaning every product added since is silently excluded.</p>
+  <div class="ev">
+    <div class="ev-label">Structured-data coverage by site</div>
+    <table>
+      <tr><th>Markup</th><th class="num">UK</th><th class="num">US</th><th>Gap</th></tr>
+      <tr><td>Product</td><td class="num">19/19</td><td class="num">13/13</td><td>complete</td></tr>
+      <tr><td>AggregateRating</td><td class="num bad">5/19</td><td class="num bad">4/13</td><td class="bad">23 products with no stars</td></tr>
+      <tr><td>FAQPage on product</td><td class="num bad">5/19</td><td class="num bad">5/13</td><td class="bad">hard-coded handle list</td></tr>
+      <tr><td>BreadcrumbList</td><td class="num bad">24/72</td><td class="num bad">22/59</td><td class="bad">missing on 2 of 3 pages</td></tr>
+    </table>
+  </div>
+  <div class="fix"><b>What needs doing</b><p>Drive review markup from the review source for every product rather than per-product conditions, and replace the handle whitelist with FAQ content held on the product itself. Add breadcrumbs across collections and blog posts — they are the cheapest of these and affect the most pages.</p></div>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-07</span><span class="owner theme">Theme</span><span class="pill high">High</span>
+    <span class="scope">Product template</span>
+    <h3>Unrecognised review scores are silently published as 4 stars</h3>
+  </div>
+  <p>Review ratings are converted from words to numbers with a fallback that assigns 4 out of 5 to anything unmatched, so a review whose wording changes — or an empty value — is published to Google as a positive rating that nobody gave. Related: the <code>mpn</code> field is filled with the product's URL handle rather than a manufacturer part number.</p>
+  <div class="ev">
+    <div class="ev-label">sections/main-product-bolle.liquid</div>
+    <ul>
+      <li>{% case review.overall %}</li>
+      <li>  {% when 'Exceptional' %}5  {% when 'Excellent' %}5</li>
+      <li>  {% when 'Good' %}4  {% when 'Poor' %}2</li>
+      <li>  {% else %}4  ← anything unrecognised becomes 4 stars</li>
+    </ul>
+  </div>
+  <div class="fix"><b>What needs doing</b><p>Make the fallback omit the review rather than invent a score. Ratings that can't be traced to a real review are a policy risk on top of an accuracy one. Either drop <code>mpn</code> or populate it properly — <code>gtin13</code> is already correct.</p></div>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-08</span><span class="owner admin">Admin</span><span class="pill high">High</span>
+    <span class="scope">14 missing · 10 duplicated · 47 over-length</span>
+    <h3>The shipping policy page is serving another page's title on both sites</h3>
+  </div>
+  <p>Checked across distinct pages only — the counts below exclude URLs that redirect. The clearest fault is a straight mix-up: on both storefronts <code>/pages/shipping-policy</code> carries a completely different page's title and description.</p>
+  <div class="ev">
+    <div class="ev-label">/pages/shipping-policy — as served today</div>
+    <table>
+      <tr><th>Site</th><th>Title served</th><th>Description served</th></tr>
+      <tr><td>US</td><td class="bad">Privacy Policy | BOLLE Drinks</td><td class="bad">"Read BOLLE's privacy policy… GDPR and CCPA compliant."</td></tr>
+      <tr><td>UK</td><td class="bad">Return &amp; Refund Policy</td><td class="bad">"14-day return policy on unopened BOLLE…"</td></tr>
+    </table>
+  </div>
+  <div class="ev">
+    <div class="ev-label">Meta description and title state, distinct pages only</div>
+    <table>
+      <tr><th>Condition</th><th class="num">UK</th><th class="num">US</th></tr>
+      <tr><td>Description missing entirely</td><td class="num bad">9</td><td class="num bad">5</td></tr>
+      <tr><td>Duplicate description sets</td><td class="num bad">6</td><td class="num bad">5</td></tr>
+      <tr><td>Duplicate title pairs</td><td class="num bad">3</td><td class="num bad">2</td></tr>
+      <tr><td>Description over 160 chars</td><td class="num">23</td><td class="num">24</td></tr>
+      <tr><td>Longest served</td><td class="num">320</td><td class="num">320</td></tr>
+    </table>
+  </div>
+  <p>The other duplicates are structural rather than accidental: each UK magnum reuses its standard-size bottle's exact title and description, and on the US site <code>/pages/non-alcoholic-champagne</code> shares a title with <code>/pages/non-alcoholic-sparkling-wine</code> — two landing pages built for different search terms, presenting as the same page.</p>
+  <div class="fix"><b>What needs doing</b><p>Fix the shipping-policy mix-up first — it is two fields on two pages. Then give the magnums and the two US landing pages titles that distinguish them, and write descriptions for the 14 pages that have none.</p></div>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">AEO-01</span><span class="owner theme">Theme · your copy</span><span class="pill high">High</span>
+    <span class="scope">Both sites</span>
+    <h3>The agent-facing files are Shopify's boilerplate and say nothing about the wine</h3>
+  </div>
+  <p>Both sites serve <code>/llms.txt</code> and <code>/agents.md</code>, and are listed in an agent-discovery sitemap — good foundations, all present and correct. But the content is Shopify's generated checkout guidance: how a shopping agent should transact. There is nothing about what BOLLE is, how it is made, what it has won, or how it differs from the category. An answer engine reading these files learns how to buy but not why to recommend.</p>
+  <p>The raw material for this already exists and is strong: the FAQ page carries 28 questions in machine-readable form matching what visitors see, and the product pages carry detailed twice-fermentation and awards content.</p>
+  <div class="fix"><b>What needs doing</b><p>Author a real <code>llms.txt</code> — what the product is, the twice-fermentation process, the award record with sources, where it is stocked, and links to the canonical pages for each. Also decide explicitly whether AI crawlers are welcome: robots.txt currently names none of them, so the answer is "yes" by default rather than by decision.</p></div>
+</div>
+
+<h2>Medium — worth clearing, no urgency</h2>
+<p class="sec-note">Ordinary hygiene. Grouped so they can be done in one pass each.</p>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-09</span><span class="owner theme">Theme</span><span class="pill med">Medium</span>
+    <span class="scope">Theme files</span>
+    <h3>Two competing product-markup implementations, and the weaker one is still wired up</h3>
+  </div>
+  <p>The good markup lives in <code>main-product-bolle.liquid</code>. An older <code>structured-data-product.liquid</code> — no ratings, no barcode, no shipping or returns, and hard-coded to <code>http://schema.org</code> — is still rendered by three other sections. None of them is on a live product page today, so nothing is currently broken; it is a trap waiting for whoever next changes a template.</p>
+  <div class="fix"><b>What needs doing</b><p>Delete the legacy snippet and repoint the three sections, or leave a comment on it saying which one is authoritative.</p></div>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-10</span><span class="owner theme">Theme</span><span class="pill med">Medium</span>
+    <span class="scope">Theme files</span>
+    <h3>The theme hard-codes itself to the UK, which will silently break a US redeploy</h3>
+  </div>
+  <p><code>layout/theme.liquid</code> opens with <code>assign force_current_site = 'uk'</code>, and <code>snippets/head-tag.liquid</code> writes a canonical tag pointing at <code>bolledrinks.co.uk</code> on every page regardless of which store renders it. The live US site serves correct self-referencing canonicals today, so this is <em>not</em> currently causing harm — but copying this theme to the US store would canonicalise the entire US catalogue to the UK and remove it from US results.</p>
+  <div class="fix"><b>What needs doing</b><p>Derive the domain from the request rather than a literal, so the theme is safe to deploy to either store. Worth doing before any theme work begins, since an SEO engagement usually starts with template edits.</p></div>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-11</span><span class="owner admin">Admin</span><span class="pill med">Medium</span>
+    <span class="scope">131 pages</span>
+    <h3>Language is declared as generic English while the alternates claim regional variants</h3>
+  </div>
+  <p>Every page on both sites declares <code>&lt;html lang="en"&gt;</code>, while the hreflang tags on the same page claim <code>en-gb</code> and <code>en-us</code>. The two should agree. Low impact on its own; trivial to fix alongside SEO-01.</p>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-12</span><span class="owner admin">Admin</span><span class="pill med">Medium</span>
+    <span class="scope">13 pages · 57 images</span>
+    <h3>Thin pages, missing alt text, and images that don't defer loading</h3>
+  </div>
+  <div class="ev">
+    <div class="ev-label">Content and image hygiene</div>
+    <table>
+      <tr><th>Condition</th><th class="num">UK</th><th class="num">US</th></tr>
+      <tr><td>Pages under 300 words</td><td class="num">7</td><td class="num">6</td></tr>
+      <tr><td>Images with no alt text</td><td class="num">29</td><td class="num">28</td></tr>
+      <tr><td>Images with no loading attribute</td><td class="num">35</td><td class="num">34</td></tr>
+    </table>
+  </div>
+  <p>Alt-text coverage is actually good at about 95%, so this is finishing rather than fixing. The thin pages overlap heavily with the duplicate routes in SEO-05 — resolving those removes most of this.</p>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <span class="id">SEO-13</span><span class="owner theme">Theme</span><span class="pill med">Medium</span>
+    <span class="scope">Theme files</span>
+    <h3>A third of the theme is unreferenced, and a quarter of templates are old backups</h3>
+  </div>
+  <div class="ev">
+    <div class="ev-label">Theme inventory</div>
+    <table>
+      <tr><th>Item</th><th class="num">Total</th><th class="num">Dead</th></tr>
+      <tr><td>Sections</td><td class="num">133</td><td class="num bad">48 unreferenced</td></tr>
+      <tr><td>Templates</td><td class="num">71</td><td class="num bad">18 backup or page-builder</td></tr>
+    </table>
+  </div>
+  <p>The leftovers come from GemPages, Pagetify and GP page-builder trials, plus dated homepage backups. Worth stating clearly: <strong>none of these load on the live site</strong> — the live third-party script load is lean (Ahrefs, Klaviyo, HubSpot, Shop, one geo-redirect app). This is developer-experience debt that will slow whoever works on templates, not a performance problem.</p>
+</div>
+
+<h2>Verified healthy — don't spend budget here</h2>
+<p class="sec-note">Checked and found correct. Listing them so an incoming specialist doesn't re-audit ground that is already solid.</p>
+<ul class="oklist">
+  <li><b>robots.txt and sitemaps</b> — well-formed on both, current Shopify agent-commerce directives included</li>
+  <li><b>Every sitemap URL resolves</b> — all 133 sitemap URLs returned 200</li>
+  <li><b>Structured data parses</b> — zero malformed JSON-LD blocks across both sites</li>
+  <li><b>Canonical tags</b> — correct and self-referencing on the live US site</li>
+  <li><b>Pagination</b> — <code>?page=2</code> self-canonicalises, which is what Google asks for</li>
+  <li><b>404s return 404</b> — no soft-404 behaviour</li>
+  <li><b>Open Graph and Twitter cards</b> — complete on all but one page</li>
+  <li><b>Analytics and Search Console</b> — GA4 and a verification tag are live</li>
+  <li><b>FAQ page</b> — 28 questions in markup, matching 30 visible on the page</li>
+  <li><b>Product markup depth</b> — shipping, returns, price validity, condition and <code>gtin13</code> all present</li>
+</ul>
+
+<h2>Not measured</h2>
+<p class="sec-note">Named so the gaps are explicit rather than assumed covered.</p>
+<p style="max-width:var(--measure);"><strong>Core Web Vitals were not measured.</strong> Google's testing API refused the requests on quota, so no page-speed figure here is real. What can be said from the HTML alone: pages weigh 200–280KB before images, with 43–48 separate inline script blocks and 13–19 inline style blocks each, which is heavy enough to be worth a proper measurement early. Also outside this audit: Search Console and analytics history, current rankings, backlinks, and the Merchant Centre product feed — all of which need account access rather than a crawl.</p>
+
+<h2>Suggested order of work</h2>
+<ol class="plan">
+  <li><b>Resolve the duplicate routes (SEO-05)</b><span>Do this first — until one URL owns each intent, every later measurement is ambiguous.</span></li>
+  <li><b>Fix the heading outline and add homepage H1s (SEO-03)</b><span>One template edit corrects all 131 pages; the H1s are a copy decision.</span></li>
+  <li><b>Rebuild hreflang on an explicit product map (SEO-01, SEO-11)</b><span>Needs the URL decisions from step 1 to be settled first.</span></li>
+  <li><b>Settle the entity and vendor naming (SEO-02)</b><span>A naming decision, then one pass through markup and Shopify's vendor field.</span></li>
+  <li><b>Strip the title suffix and rewrite truncated titles (SEO-04)</b><span>Template change, then roughly 20 blog titles by hand.</span></li>
+  <li><b>Close the markup coverage gaps (SEO-06, SEO-07)</b><span>Reviews, product FAQs and breadcrumbs — and remove the invented 4-star fallback.</span></li>
+  <li><b>Write the meta descriptions and a real llms.txt (SEO-08, AEO-01)</b><span>Both are content work and can run in parallel with the technical fixes.</span></li>
+  <li><b>Then measure Core Web Vitals and hand over</b><span>With the structural faults gone, the numbers will mean something.</span></li>
+</ol>
+
+<footer>
+  <p>Crawled 24 August 2026 from both live sitemaps: 60 URLs on www.bolledrinks.com, 73 on www.bolledrinks.co.uk. Every finding was verified against the served HTML rather than inferred from the theme source, and theme-only risks are marked as such.</p>
+  <p>No files were changed and nothing was published to either store.</p>
+</footer>
+
+</div>
+</body>
+</html>
