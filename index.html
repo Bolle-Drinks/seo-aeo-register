@@ -740,11 +740,11 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 
 <div class="entry">
   <div class="entry-head">
-    <span class="id">SEO-03</span><span class="owner theme">Theme</span><span class="pill block">Blocking</span>
+    <span class="id">SEO-03</span><span class="owner theme">Theme</span><span class="pill med">Medium</span>
     <span class="scope">Both homepages · every page for hierarchy</span>
-    <h3>Neither homepage has an H1, and every page's headings begin at H3</h3>
+    <h3>The homepage H1 and the drawer headings are fixed; the H1 to H3 skips are not</h3>
   </div>
-  <p>Both homepages carry roughly 840 words with no H1 element. Separately, the mobile navigation drawer renders <code>&lt;h3&gt;</code> section titles before the main content on <em>every</em> page, so the document outline opens at H3 and then jumps back to H1. There are three on US, Shop, Learn and Contact, and four on UK, which adds Trade. Product and collection pages then skip H1 to H3 again, products for the size options and collections for the product cards.</p>
+  <p>Both homepages carried roughly 840 words with no H1 element, and the mobile navigation drawer rendered <code>&lt;h3&gt;</code> section titles before the main content on every page, three on US and four on UK, so the document outline opened at H3 and then jumped back to H1. Both are fixed. Product and collection pages still skip H1 to H3, products for the size options and collections for the product cards.</p>
   <div class="ev">
     <div class="ev-label">Heading order in source, US product page</div>
     <ul>
@@ -756,7 +756,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
       <li>h2 "Awards"</li>
     </ul>
   </div>
-  <div class="fix"><b>What needs doing</b><p>The drawer titles are navigation labels, not document structure, so change them to <code>div</code> with the existing styling. That styling is not carried entirely by the class: <code>line-height</code> currently comes from a bare <code>h3</code> selector in <code>styles.css</code> and computes to 1.25 below 992px and 1.4 above it, so the class needs both values or the drawer tightens by 4.8px per heading. Done on both stores 1 September 2026, four pushes, CSS first then markup. That edit removes the leading H3 run but does not on its own correct the outline, because two further faults remain: give each homepage a real H1 carrying its primary term, and demote the product and collection size and card headings.</p></div>
+  <div class="fix"><b>What was done</b><p>The drawer titles became <code>div</code> on both stores on 1 September 2026, four pushes, CSS first then markup, with <code>line-height</code> relocated onto <code>.bolle-drawer-section-title</code> because it came from a bare <code>h3</code> selector and a straight tag swap would have dropped it. Separately on 1 September 2026 the homepage gained an H1 by promoting the existing <code>&lt;h2 class="jci-heading"&gt;</code> in <code>sections/july2026-home-collection-intro.liquid</code>, one line per store, no copy written and no admin edit: the heading text already read &ldquo;The World&rsquo;s Finest Non-Alcoholic Wine&rdquo; and lives in <code>templates/index.json</code>. Both homepages now serve exactly one H1 and it is the first heading. Measured before pushing by substituting the element in the live DOM at 390px and 1440px: zero computed differences across 14 properties, because that class declares its own <code>line-height</code>, unlike the drawer case. What remains: demote the product and collection size and card headings, which still skip H1 to H3. That promotion was written per store in binary mode rather than by copying one store&rsquo;s bytes to the other, which is the technique used for the b06 header switcher and the b07 breadcrumb block. Those two files were byte-identical across the stores; this one is not, being CRLF on UK and LF on US and differing in two further lines, so the same technique would have corrupted it. The property that made splicing safe was absent, and only measuring the files showed that.</p></div>
 </div>
 
 <div class="entry">
