@@ -686,6 +686,133 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 })();
 </script>
 
+<h2>Suggestions <span class="sg-count" id="sg-count"></span></h2>
+<p class="sec-note">Anything you notice that is not on the worklist. These are <strong>not tasks</strong>: they have no tick box, they carry no register reference, and they are not counted in the figure above. Michelle turns them into worklist items by hand.</p>
+
+<form id="sg-form" autocomplete="off">
+  <input type="text" id="sg-name" maxlength="40" placeholder="your name" aria-label="Your name" spellcheck="false">
+  <textarea id="sg-text" maxlength="500" rows="3" placeholder="what did you find?" aria-label="What you found"></textarea>
+  <div class="sg-row"><button type="submit" id="sg-send">Add</button><span class="sg-msg" id="sg-msg" role="status" aria-live="polite"></span></div>
+</form>
+
+<ol class="plan" id="sg-list"><li class="sg-loading"><span>Loading suggestions&hellip;</span></li></ol>
+
+<style>
+  #sg-form{max-width:var(--measure);margin:14px 0 10px;}
+  #sg-name,#sg-text{display:block;width:100%;box-sizing:border-box;margin-bottom:8px;
+    font:inherit;padding:8px 10px;border:1px solid var(--rule);border-radius:2px;background:transparent;color:inherit;}
+  #sg-text{resize:vertical;}
+  .sg-row{display:flex;align-items:center;gap:12px;}
+  #sg-send{font:inherit;padding:7px 18px;border:1px solid var(--rule);border-radius:2px;background:transparent;color:inherit;cursor:pointer;}
+  #sg-send[disabled]{opacity:.5;cursor:default;}
+  .sg-msg{font-size:12px;color:var(--ink-faint);}
+  .sg-msg.error{color:#a12;}
+  .sg-count{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;color:var(--ink-faint);letter-spacing:.06em;}
+  #sg-list .sg-empty span,#sg-list .sg-loading span{color:var(--ink-faint);}
+  #sg-list .sg-error span{color:#a12;}
+</style>
+
+<script>
+/* Suggestions. A SEPARATE IIFE from the worklist script, with its own ENDPOINT
+   and TOKEN, so that neither fetch can affect the other's rendering. Nothing in
+   here reads or writes #wl-body, #wl-count, #wl-bar, #wl-mode or #wl-note. */
+(function(){
+  "use strict";
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbytg_yKHhBbrqNJWixeX8jh1udeX6KS_ydfKIyfyraNSIGAeyNXmYhfRz07Ln6lu_t04Q/exec";
+  var TOKEN = "8jDH_3Er5ETO4RE0";
+
+  var LIST = document.getElementById("sg-list");
+  var MSG  = document.getElementById("sg-msg");
+  var CNT  = document.getElementById("sg-count");
+  var SEND = document.getElementById("sg-send");
+
+  function line(cls, text){
+    LIST.textContent = "";
+    var li = document.createElement("li");
+    li.className = cls;
+    var sp = document.createElement("span");
+    sp.textContent = text;
+    li.appendChild(sp);
+    LIST.appendChild(li);
+  }
+
+  function render(items){
+    if(!items || !items.length){
+      CNT.textContent = "none yet";
+      line("sg-empty", "Nothing suggested yet.");
+      return;
+    }
+    CNT.textContent = items.length + (items.length === 1 ? " in the queue" : " in the queue");
+    LIST.textContent = "";
+    items.forEach(function(s){
+      var li = document.createElement("li");
+      var b  = document.createElement("b");
+      b.textContent = (s.name || "anonymous") + (s.when ? " · " + s.when : "");
+      var sp = document.createElement("span");
+      sp.textContent = s.text || "";
+      li.appendChild(b); li.appendChild(sp);
+      LIST.appendChild(li);
+    });
+  }
+
+  function failed(){
+    CNT.textContent = "unavailable";
+    line("sg-error", "The suggestions list could not be loaded. What is shown here is not the current state.");
+  }
+
+  function load(){
+    fetch(ENDPOINT + "?what=suggestions", {cache:"no-store"})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.ok) throw new Error("bad response");
+        render(d.suggestions);
+      })
+      .catch(failed);
+  }
+
+  document.getElementById("sg-form").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var name = document.getElementById("sg-name").value.trim();
+    var text = document.getElementById("sg-text").value.trim();
+    if(!name || !text){
+      MSG.className = "sg-msg error";
+      MSG.textContent = "Both your name and a description are needed.";
+      return;
+    }
+    SEND.disabled = true;
+    MSG.className = "sg-msg";
+    MSG.textContent = "Saving…";
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: {"Content-Type": "text/plain;charset=utf-8"},
+      body: JSON.stringify({token: TOKEN, action: "suggest", name: name, text: text})
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if(d && d.ok){
+        MSG.className = "sg-msg";
+        MSG.textContent = "Saved for everyone.";
+        document.getElementById("sg-text").value = "";
+        render(d.suggestions);
+        return;
+      }
+      var e = d && d.error;
+      MSG.className = "sg-msg error";
+      MSG.textContent =
+        e === "rate_limited"       ? "One at a time. Wait twenty seconds and try again." :
+        e === "bad_name"           ? "That name has characters the form will not accept." :
+        e === "bad_text"           ? "The description is empty or longer than 500 characters." :
+        e === "no_suggestions_tab" ? "Not saved: the suggestions sheet is missing. Tell Michelle." :
+                                     "Not saved. Nothing was recorded.";
+    }).catch(function(){
+      MSG.className = "sg-msg error";
+      MSG.textContent = "Not saved. The connection failed and nothing was recorded.";
+    }).then(function(){ SEND.disabled = false; });
+  });
+
+  load();
+})();
+</script>
+
+
 <h2>The headline</h2>
 <p class="sec-note">Three things would actively mislead an incoming specialist. Everything else is ordinary tidying.</p>
 
