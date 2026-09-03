@@ -456,21 +456,147 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
   <p class="standfirst">A full crawl of both live BOLLE storefronts, checked for the technical and structural faults that would distort or waste any SEO/AEO work started on top of them. Findings are ordered by what blocks work, not by effort.</p>
   <div class="meta-line">
     <span><b>Scope</b> www.bolledrinks.co.uk · www.bolledrinks.com</span>
-    <span><b>Method</b> full sitemap crawl, 131 live pages</span>
+    <span><b>Method</b> full sitemap crawl, 118 live pages, 3 Sep 2026</span>
     <span><b>Status</b> audit, plus admin changes made 25 Aug 2026 — see Findings</span>
   </div>
 </header>
 
 <div class="scorecard">
-  <div class="tile"><span class="n neutral">131</span><span class="k">Live pages crawled</span></div>
-  <div class="tile"><span class="n block">32</span><span class="k">Pages with a broken hreflang link</span></div>
-  <div class="tile"><span class="n block">131</span><span class="k">Pages whose headings start at H3</span></div>
-  <div class="tile"><span class="n high">80</span><span class="k">Titles over 60 characters</span></div>
-  <div class="tile"><span class="n high">23</span><span class="k">Products missing review markup</span></div>
-  <div class="tile"><span class="n neutral">0</span><span class="k">Broken pages or bad JSON-LD</span></div>
+  <div class="tile"><span class="n neutral">118</span><span class="k">Live pages crawled, 3 Sep 2026</span></div>
+  <div class="tile"><span class="n block">21</span><span class="k">Pages with a broken hreflang link</span></div>
+  <div class="tile"><span class="n block">32</span><span class="k">Pages that skip a heading level</span></div>
+  <div class="tile"><span class="n high">83</span><span class="k">Titles over 60 characters</span></div>
+  <div class="tile"><span class="n high">16</span><span class="k">Products missing review markup</span></div>
+  <div class="tile"><span class="n neutral">0</span><span class="k">Structured-data blocks that fail to parse</span></div>
 </div>
-<p class="caption">Every URL in both sitemaps returned 200 and every structured-data block parsed. The faults below are in what the pages <em>say</em>, not whether they load.</p>
+<p class="caption">Every structured-data block parsed. Five sitemapped URLs do not return 200: two 404s and three redirects. The rest of the faults below are in what the pages <em>say</em>, not whether they load.</p>
 
+
+<h2>Suggestions <span class="sg-count" id="sg-count"></span></h2>
+<p class="sec-note">Anything you notice that is not on the worklist. These are <strong>not tasks</strong>: they have no tick box, they carry no register reference, and they are not counted in the worklist&rsquo;s progress figure. Michelle turns them into worklist items by hand.</p>
+
+<form id="sg-form" autocomplete="off">
+  <input type="text" id="sg-name" maxlength="40" placeholder="your name" aria-label="Your name" spellcheck="false">
+  <textarea id="sg-text" maxlength="500" rows="3" placeholder="what did you find?" aria-label="What you found"></textarea>
+  <div class="sg-row"><button type="submit" id="sg-send">Add</button><span class="sg-msg" id="sg-msg" role="status" aria-live="polite"></span></div>
+</form>
+
+<ol class="plan" id="sg-list"><li class="sg-loading"><span>Loading suggestions&hellip;</span></li></ol>
+
+<style>
+  #sg-form{max-width:var(--measure);margin:14px 0 10px;}
+  #sg-name,#sg-text{display:block;width:100%;box-sizing:border-box;margin-bottom:8px;
+    font:inherit;padding:8px 10px;border:1px solid var(--rule);border-radius:2px;background:transparent;color:inherit;}
+  #sg-text{resize:vertical;}
+  .sg-row{display:flex;align-items:center;gap:12px;}
+  #sg-send{font:inherit;padding:7px 18px;border:1px solid var(--rule);border-radius:2px;background:transparent;color:inherit;cursor:pointer;}
+  #sg-send[disabled]{opacity:.5;cursor:default;}
+  .sg-msg{font-size:12px;color:var(--ink-faint);}
+  .sg-msg.error{color:#a12;}
+  .sg-count{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;color:var(--ink-faint);letter-spacing:.06em;}
+  #sg-list .sg-empty span,#sg-list .sg-loading span{color:var(--ink-faint);}
+  #sg-list .sg-error span{color:#a12;}
+</style>
+
+<script>
+/* Suggestions. A SEPARATE IIFE from the worklist script, with its own ENDPOINT
+   and TOKEN, so that neither fetch can affect the other's rendering. Nothing in
+   here reads or writes #wl-body, #wl-count, #wl-bar, #wl-mode or #wl-note. */
+(function(){
+  "use strict";
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbytg_yKHhBbrqNJWixeX8jh1udeX6KS_ydfKIyfyraNSIGAeyNXmYhfRz07Ln6lu_t04Q/exec";
+  var TOKEN = "8jDH_3Er5ETO4RE0";
+
+  var LIST = document.getElementById("sg-list");
+  var MSG  = document.getElementById("sg-msg");
+  var CNT  = document.getElementById("sg-count");
+  var SEND = document.getElementById("sg-send");
+
+  function line(cls, text){
+    LIST.textContent = "";
+    var li = document.createElement("li");
+    li.className = cls;
+    var sp = document.createElement("span");
+    sp.textContent = text;
+    li.appendChild(sp);
+    LIST.appendChild(li);
+  }
+
+  function render(items){
+    if(!items || !items.length){
+      CNT.textContent = "none yet";
+      line("sg-empty", "Nothing suggested yet.");
+      return;
+    }
+    CNT.textContent = items.length + (items.length === 1 ? " in the queue" : " in the queue");
+    LIST.textContent = "";
+    items.forEach(function(s){
+      var li = document.createElement("li");
+      var b  = document.createElement("b");
+      b.textContent = (s.name || "anonymous") + (s.when ? " · " + s.when : "");
+      var sp = document.createElement("span");
+      sp.textContent = s.text || "";
+      li.appendChild(b); li.appendChild(sp);
+      LIST.appendChild(li);
+    });
+  }
+
+  function failed(){
+    CNT.textContent = "unavailable";
+    line("sg-error", "The suggestions list could not be loaded. What is shown here is not the current state.");
+  }
+
+  function load(){
+    fetch(ENDPOINT + "?what=suggestions", {cache:"no-store"})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.ok) throw new Error("bad response");
+        render(d.suggestions);
+      })
+      .catch(failed);
+  }
+
+  document.getElementById("sg-form").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var name = document.getElementById("sg-name").value.trim();
+    var text = document.getElementById("sg-text").value.trim();
+    if(!name || !text){
+      MSG.className = "sg-msg error";
+      MSG.textContent = "Both your name and a description are needed.";
+      return;
+    }
+    SEND.disabled = true;
+    MSG.className = "sg-msg";
+    MSG.textContent = "Saving…";
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: {"Content-Type": "text/plain;charset=utf-8"},
+      body: JSON.stringify({token: TOKEN, action: "suggest", name: name, text: text})
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if(d && d.ok){
+        MSG.className = "sg-msg";
+        MSG.textContent = "Saved for everyone.";
+        document.getElementById("sg-text").value = "";
+        render(d.suggestions);
+        return;
+      }
+      var e = d && d.error;
+      MSG.className = "sg-msg error";
+      MSG.textContent =
+        e === "rate_limited"       ? "One at a time. Wait twenty seconds and try again." :
+        e === "bad_name"           ? "That name has characters the form will not accept." :
+        e === "bad_text"           ? "The description is empty or longer than 500 characters." :
+        e === "no_suggestions_tab" ? "Not saved: the suggestions sheet is missing. Tell Michelle." :
+                                     "Not saved. Nothing was recorded.";
+    }).catch(function(){
+      MSG.className = "sg-msg error";
+      MSG.textContent = "Not saved. The connection failed and nothing was recorded.";
+    }).then(function(){ SEND.disabled = false; });
+  });
+
+  load();
+})();
+</script>
 
 <h2 id="worklist">In-house worklist</h2>
 <p class="sec-note">41 tasks, grouped by who can do them rather than by severity. 40 of the 41 need no SEO specialist. Tick as you go and add your name. It saves for everyone.</p>
@@ -686,131 +812,6 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 })();
 </script>
 
-<h2>Suggestions <span class="sg-count" id="sg-count"></span></h2>
-<p class="sec-note">Anything you notice that is not on the worklist. These are <strong>not tasks</strong>: they have no tick box, they carry no register reference, and they are not counted in the figure above. Michelle turns them into worklist items by hand.</p>
-
-<form id="sg-form" autocomplete="off">
-  <input type="text" id="sg-name" maxlength="40" placeholder="your name" aria-label="Your name" spellcheck="false">
-  <textarea id="sg-text" maxlength="500" rows="3" placeholder="what did you find?" aria-label="What you found"></textarea>
-  <div class="sg-row"><button type="submit" id="sg-send">Add</button><span class="sg-msg" id="sg-msg" role="status" aria-live="polite"></span></div>
-</form>
-
-<ol class="plan" id="sg-list"><li class="sg-loading"><span>Loading suggestions&hellip;</span></li></ol>
-
-<style>
-  #sg-form{max-width:var(--measure);margin:14px 0 10px;}
-  #sg-name,#sg-text{display:block;width:100%;box-sizing:border-box;margin-bottom:8px;
-    font:inherit;padding:8px 10px;border:1px solid var(--rule);border-radius:2px;background:transparent;color:inherit;}
-  #sg-text{resize:vertical;}
-  .sg-row{display:flex;align-items:center;gap:12px;}
-  #sg-send{font:inherit;padding:7px 18px;border:1px solid var(--rule);border-radius:2px;background:transparent;color:inherit;cursor:pointer;}
-  #sg-send[disabled]{opacity:.5;cursor:default;}
-  .sg-msg{font-size:12px;color:var(--ink-faint);}
-  .sg-msg.error{color:#a12;}
-  .sg-count{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;color:var(--ink-faint);letter-spacing:.06em;}
-  #sg-list .sg-empty span,#sg-list .sg-loading span{color:var(--ink-faint);}
-  #sg-list .sg-error span{color:#a12;}
-</style>
-
-<script>
-/* Suggestions. A SEPARATE IIFE from the worklist script, with its own ENDPOINT
-   and TOKEN, so that neither fetch can affect the other's rendering. Nothing in
-   here reads or writes #wl-body, #wl-count, #wl-bar, #wl-mode or #wl-note. */
-(function(){
-  "use strict";
-  var ENDPOINT = "https://script.google.com/macros/s/AKfycbytg_yKHhBbrqNJWixeX8jh1udeX6KS_ydfKIyfyraNSIGAeyNXmYhfRz07Ln6lu_t04Q/exec";
-  var TOKEN = "8jDH_3Er5ETO4RE0";
-
-  var LIST = document.getElementById("sg-list");
-  var MSG  = document.getElementById("sg-msg");
-  var CNT  = document.getElementById("sg-count");
-  var SEND = document.getElementById("sg-send");
-
-  function line(cls, text){
-    LIST.textContent = "";
-    var li = document.createElement("li");
-    li.className = cls;
-    var sp = document.createElement("span");
-    sp.textContent = text;
-    li.appendChild(sp);
-    LIST.appendChild(li);
-  }
-
-  function render(items){
-    if(!items || !items.length){
-      CNT.textContent = "none yet";
-      line("sg-empty", "Nothing suggested yet.");
-      return;
-    }
-    CNT.textContent = items.length + (items.length === 1 ? " in the queue" : " in the queue");
-    LIST.textContent = "";
-    items.forEach(function(s){
-      var li = document.createElement("li");
-      var b  = document.createElement("b");
-      b.textContent = (s.name || "anonymous") + (s.when ? " · " + s.when : "");
-      var sp = document.createElement("span");
-      sp.textContent = s.text || "";
-      li.appendChild(b); li.appendChild(sp);
-      LIST.appendChild(li);
-    });
-  }
-
-  function failed(){
-    CNT.textContent = "unavailable";
-    line("sg-error", "The suggestions list could not be loaded. What is shown here is not the current state.");
-  }
-
-  function load(){
-    fetch(ENDPOINT + "?what=suggestions", {cache:"no-store"})
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        if(!d || !d.ok) throw new Error("bad response");
-        render(d.suggestions);
-      })
-      .catch(failed);
-  }
-
-  document.getElementById("sg-form").addEventListener("submit", function(ev){
-    ev.preventDefault();
-    var name = document.getElementById("sg-name").value.trim();
-    var text = document.getElementById("sg-text").value.trim();
-    if(!name || !text){
-      MSG.className = "sg-msg error";
-      MSG.textContent = "Both your name and a description are needed.";
-      return;
-    }
-    SEND.disabled = true;
-    MSG.className = "sg-msg";
-    MSG.textContent = "Saving…";
-    fetch(ENDPOINT, {
-      method: "POST",
-      headers: {"Content-Type": "text/plain;charset=utf-8"},
-      body: JSON.stringify({token: TOKEN, action: "suggest", name: name, text: text})
-    }).then(function(r){ return r.json(); }).then(function(d){
-      if(d && d.ok){
-        MSG.className = "sg-msg";
-        MSG.textContent = "Saved for everyone.";
-        document.getElementById("sg-text").value = "";
-        render(d.suggestions);
-        return;
-      }
-      var e = d && d.error;
-      MSG.className = "sg-msg error";
-      MSG.textContent =
-        e === "rate_limited"       ? "One at a time. Wait twenty seconds and try again." :
-        e === "bad_name"           ? "That name has characters the form will not accept." :
-        e === "bad_text"           ? "The description is empty or longer than 500 characters." :
-        e === "no_suggestions_tab" ? "Not saved: the suggestions sheet is missing. Tell Michelle." :
-                                     "Not saved. Nothing was recorded.";
-    }).catch(function(){
-      MSG.className = "sg-msg error";
-      MSG.textContent = "Not saved. The connection failed and nothing was recorded.";
-    }).then(function(){ SEND.disabled = false; });
-  });
-
-  load();
-})();
-</script>
 
 
 <h2>The headline</h2>
@@ -824,10 +825,10 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 <div class="entry">
   <div class="entry-head">
     <span class="id">SEO-01</span><span class="owner theme">Theme · gated</span><span class="pill block">Blocking</span>
-    <span class="scope">32 of 131 pages · both sites</span>
+    <span class="scope">21 of 111 pages · both sites</span>
     <h3>International (hreflang) links point at redirects and dead URLs, including all three flagship wines</h3>
   </div>
-  <p>Each page declares a UK and a US counterpart by taking its own path and swapping the domain. That assumption holds for 99 pages and fails for 32, because the two stores use different handles for the same wine. Google discards a whole hreflang cluster when the return link doesn't resolve, so for the affected pages the two sites currently read as unrelated duplicates competing with each other rather than as regional variants.</p>
+  <p>Each page declares a UK and a US counterpart by taking its own path and swapping the domain. That assumption holds for 90 pages and fails for 21, because the two stores use different handles for the same wine. Remeasured 3 September 2026: 21 of 111, against 32 of 131 when this entry was written. The scorecard tile above reports the same measurement, and both figures moved together. The denominator here is the 111 pages that carry markup, not the 118 URLs crawled: five do not return 200 and two are Markdown files. Google discards a whole hreflang cluster when the return link doesn't resolve, so for the affected pages the two sites currently read as unrelated duplicates competing with each other rather than as regional variants.</p>
   <div class="ev">
     <div class="ev-label">Flagship products — UK page → declared US counterpart</div>
     <table>
@@ -856,7 +857,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 <div class="entry">
   <div class="entry-head">
     <span class="id">SEO-02</span><span class="owner decision">Decision + Admin</span><span class="pill block">Blocking</span>
-    <span class="scope">All 131 pages</span>
+    <span class="scope">All 111 pages</span>
     <h3>One company identifier carries three different company names</h3>
   </div>
   <p>Both sites publish their Organization data under the single identifier <code>bolledrinks.co.uk/#organization</code>. That is a legitimate choice — one global brand entity — but the same identifier is used for three different names on the same page, which makes the entity self-contradictory at exactly the moment answer engines are trying to resolve who BOLLE is.</p>
@@ -1036,8 +1037,8 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
     <span class="scope">Theme files</span>
     <h3>Two competing product-markup implementations, and the weaker one is now unwired but still present</h3>
   </div>
-  <p>The good markup lives in <code>main-product-bolle.liquid</code>. An older <code>structured-data-product.liquid</code>, with no ratings, no <code>gtin13</code>, no shipping or returns, and hard-coded to <code>http://schema.org/</code>, was rendered by three other sections: <code>featured-product.liquid</code>, <code>main-product.liquid</code> and <code>featured-product-metafields.liquid</code>. None was on a live product page. Measured 1 September 2026 by sweeping all 131 live URLs on both stores for the snippet&rsquo;s distinctive <code>http://schema.org/</code> context string: zero hits. Its property set is a strict subset of what <code>main-product-bolle.liquid</code> already emits, which carries 33 further properties, so nothing was lost by unwiring it. An earlier version of this entry said the snippet had no barcode. It does read <code>current_variant.barcode</code>, for <code>mpn</code> rather than for <code>gtin13</code>.</p>
-  <div class="fix"><b>What was done</b><p>The render call was removed from all three sections on both stores on 1 September 2026, two pushes, three files each, with a 131-page sweep run immediately before each one. The three section files are byte-identical across the stores afterwards. The snippet was not deleted and remains in place, unreachable. Two reasons. No route exists to delete a single theme file with the current tooling, see finding 36. And the file holds the only correct <code>mpn</code> implementation in either theme, which SEO-07 still asks for, see finding 38. Deleting it would have left this register asking for something the deletion had destroyed.</p></div>
+  <p>The good markup lives in <code>main-product-bolle.liquid</code>. An older <code>structured-data-product.liquid</code>, with no ratings, no <code>gtin13</code>, no shipping or returns, and hard-coded to <code>http://schema.org/</code>, was rendered by three other sections: <code>featured-product.liquid</code>, <code>main-product.liquid</code> and <code>featured-product-metafields.liquid</code>. None was on a live product page. Measured 1 September 2026 by sweeping every live URL on both stores for the snippet&rsquo;s distinctive <code>http://schema.org/</code> context string: zero hits. Its property set is a strict subset of what <code>main-product-bolle.liquid</code> already emits, which carries 33 further properties, so nothing was lost by unwiring it. An earlier version of this entry said the snippet had no barcode. It does read <code>current_variant.barcode</code>, for <code>mpn</code> rather than for <code>gtin13</code>.</p>
+  <div class="fix"><b>What was done</b><p>The render call was removed from all three sections on both stores on 1 September 2026, two pushes, three files each, with a full live-URL sweep run immediately before each one. The three section files are byte-identical across the stores afterwards. The snippet was not deleted and remains in place, unreachable. Two reasons. No route exists to delete a single theme file with the current tooling, see finding 36. And the file holds the only correct <code>mpn</code> implementation in either theme, which SEO-07 still asks for, see finding 38. Deleting it would have left this register asking for something the deletion had destroyed.</p></div>
 </div>
 
 <div class="entry">
@@ -1054,7 +1055,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 <div class="entry">
   <div class="entry-head">
     <span class="id">SEO-11</span><span class="owner admin">Admin</span><span class="pill med">Medium</span>
-    <span class="scope">131 pages</span>
+    <span class="scope">111 pages</span>
     <h3>Language is declared as generic English while the alternates claim regional variants</h3>
   </div>
   <p>Every page on both sites declares <code>&lt;html lang="en"&gt;</code>, while the hreflang tags on the same page claim <code>en-gb</code> and <code>en-us</code>. The two should agree. Low impact on its own; trivial to fix alongside SEO-01.</p>
@@ -1117,7 +1118,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 <h2>Suggested order of work</h2>
 <ol class="plan">
   <li><b>Resolve the duplicate routes (SEO-05)</b><span>Do this first — until one URL owns each intent, every later measurement is ambiguous.</span></li>
-  <li><b>Fix the heading outline and add homepage H1s (SEO-03)</b><span>One template edit corrects all 131 pages; the H1s are a copy decision.</span></li>
+  <li><b>Fix the heading outline and add homepage H1s (SEO-03)</b><span>The homepage H1s are done (b01, b03). What remains is 32 pages that skip a heading level, in the product size-option and collection card headings &mdash; b11.</span></li>
   <li><b>Rebuild hreflang on an explicit product map (SEO-01, SEO-11)</b><span>Needs the URL decisions from step 1 to be settled first.</span></li>
   <li><b>Settle the entity and vendor naming (SEO-02)</b><span>A naming decision, then one pass through markup and Shopify's vendor field.</span></li>
   <li><b>Strip the title suffix and rewrite truncated titles (SEO-04)</b><span>Template change, then roughly 20 blog titles by hand.</span></li>
