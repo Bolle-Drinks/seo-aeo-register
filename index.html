@@ -354,6 +354,12 @@ ol.plan span{display:block;color:var(--ink-faint);font-size:14.5px;margin-top:2p
 }
 .task input:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 .task label{flex:1;cursor:pointer;font-size:15.5px;line-height:1.5;}
+.wl-id{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;color:var(--ink-faint);
+  letter-spacing:.06em;white-space:nowrap;padding-top:3px;
+  flex:0 0 26px;text-transform:uppercase;
+}
 .task .ref{
   font-family:"IBM Plex Mono",ui-monospace,monospace;
   font-size:10.5px;color:var(--ink-faint);
@@ -386,7 +392,7 @@ ol.plan span{display:block;color:var(--ink-faint);font-size:14.5px;margin-top:2p
    Kept outside <label> so .task.done's strike-through does not reach them. */
 .task.has-sub{border-bottom:none;padding-bottom:2px;}
 .task-sub{
-  margin:0 0 0 28px;padding:0 0 11px;
+  margin:0 0 0 66px;padding:0 0 11px;
   border-bottom:1px solid var(--rule);
   font-size:13.5px;line-height:1.55;color:var(--ink-faint);
   max-width:var(--measure);
@@ -734,6 +740,15 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
       var id = row.getAttribute("data-id");
       var st = state[id] || {};
       var box = row.querySelector("input[data-task]");
+      // ID BADGE. Derived from data-id at render time, never typed into the markup, so an item
+      // inserted mid-list renumbers nothing. That is why it shows the id rather than a position:
+      // a position is a property of the list, an id is a property of the item, and this list has
+      // had items inserted mid-way three times. It is a <span>, matching neither
+      // "#wl-body input[data-task]" nor "input.who", so TOTAL, the done count and the bar are
+      // untouched by construction rather than by testing.
+      var idb = row.querySelector(".wl-id");
+      if(!idb){ idb = document.createElement("span"); idb.className = "wl-id"; row.insertBefore(idb, box.nextSibling); }
+      if(idb.textContent !== id) idb.textContent = id;
       var who = row.querySelector("input.who");
       var when = row.querySelector(".when");
       if(box.checked !== !!st.done) box.checked = !!st.done;
