@@ -606,7 +606,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 </script>
 
 <h2 id="worklist">In-house worklist</h2>
-<p class="sec-note">61 tasks, grouped by who can do them rather than by severity. 60 of the 61 need no SEO specialist. Tick as you go and add your name. It saves for everyone.</p>
+<p class="sec-note">63 tasks, grouped by who can do them rather than by severity. 62 of the 63 need no SEO specialist. Tick as you go and add your name. It saves for everyone.</p>
 
 <div class="sheet-cta">
   <p class="k">Shared &mdash; everyone sees the same list</p>
@@ -615,7 +615,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 </div>
 
 <div class="wl-head">
-  <span class="wl-count" id="wl-count">0 of 61 done</span>
+  <span class="wl-count" id="wl-count">0 of 63 done</span>
   <span class="wl-mode" id="wl-mode">&nbsp;</span>
 </div>
 <div class="bar"><i id="wl-bar" style="width:0%"></i></div>
@@ -623,7 +623,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 
 <div id="wl-body">
 <div class="wl-group">
-<p class="gh">A &nbsp;&middot;&nbsp; Shopify admin &mdash; no code &nbsp;&middot;&nbsp; 35 items</p>
+<p class="gh">A &nbsp;&middot;&nbsp; Shopify admin &mdash; no code &nbsp;&middot;&nbsp; 37 items</p>
 <p class="gs">No deploy risk, and it can run in parallel with the theme work. This is most of the hours, because it is mostly writing.</p>
 <div class="task" data-id="a01"><input type="checkbox" id="t-a01" data-task="a01"><label for="t-a01">Fix <code>/pages/shipping-policy</code> title &amp; description on the US site (currently the privacy policy's)</label><span class="who-wrap"><input type="text" class="who" data-who="a01" maxlength="28" placeholder="who?" aria-label="Person who did task A01" spellcheck="false"><span class="when" data-when="a01"></span></span><span class="ref">SEO-08</span></div>
 <div class="task has-sub" data-id="a02"><input type="checkbox" id="t-a02" data-task="a02"><label for="t-a02">Fix <code>/pages/shipping-policy</code> title &amp; description on the UK site (currently the returns policy's)</label><span class="who-wrap"><input type="text" class="who" data-who="a02" maxlength="28" placeholder="who?" aria-label="Person who did task A02" spellcheck="false"><span class="when" data-when="a02"></span></span><span class="ref">SEO-08</span></div>
@@ -712,6 +712,10 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 <p class="task-sub"><b>CORRECTED 11 September 2026: the figure was 19 and it is 21, on both stores. The cause matters more than the number.</b> 19 came from a regex in this audit&rsquo;s own scan that capped matches at 60 characters, which silently dropped the two longest titles: <code>SECTION 3 - ACCURACY, COMPLETENESS, AND TIMELINESS OF INFORMATION</code> at 65 characters and <code>SECTION 13 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY</code> at 62. <b>Someone working from 19 would have promoted 19 of 21 and believed they had finished, and nothing in this item would have told them otherwise.</b> Same shape as the group B heading count and the fourteen-versus-eighteen on <code>a30</code>: <b>a number produced by an instrument with an undeclared limit, carried forward as a fact.</b></p>
 <p class="task-sub"><b>HOW TO DO THE MECHANICAL HALF, because the reasoning is what should be inherited rather than the heuristic.</b> <b>ALL-CAPS was the thing that found these; it is not the thing that should edit them.</b> Measured on both stores 11 September 2026: 21 fully upper-case paragraphs, every one a section title, <b>zero shouted body paragraphs</b>, and each whole-element literal occurring <b>exactly once</b>, 21 of 21, so every one can be asserted at <code>x1</code>. <b>Ship the enumerated list of 21 verified-unique literals, with the <code>SECTION &lt;n&gt; - </code> pattern plus the single literal <code>OVERVIEW</code> used as a CHECK on that list rather than as the selector.</b> The reason is not fussiness: <b>a heuristic that works today because no shouted body copy exists is a heuristic that breaks the first time someone writes some</b>, and a terms-of-service page is exactly where someone eventually shouts a disclaimer.</p>
 <p class="task-sub"><b>THE LARGER THING THIS MEASUREMENT FOUND, AND IT IS NOT ABOUT HEADINGS.</b> US privacy-policy is <b>752 words</b> with a real outline, tables and lists. UK privacy-policy is <b>2,610 words</b> with none. <b>These are two different documents, not one document in two markets</b>, and the longer, less navigable one is the UK&rsquo;s, in the stricter regime. <b>Reconciling them is a content and compliance question rather than a markup one, and it should not be settled by whoever fixes the headings.</b></p>
+<div class="task has-sub" data-id="a40"><input type="checkbox" id="t-a40" data-task="a40"><label for="t-a40">Five pixels across the two stores have an empty <code>privacyPurposes</code> list, so they collect from the first page view regardless of what the visitor has consented to</label><span class="who-wrap"><input type="text" class="who" data-who="a40" maxlength="28" placeholder="who?" aria-label="Person who did task A40" spellcheck="false"><span class="when" data-when="a40"></span></span><span class="ref"></span></div>
+<p class="task-sub"><b>RESCOPED 15 September 2026 after the pixel inventory was read from served HTML.</b> <b>Four of the five are app pixels whose <code>privacyPurposes</code> are declared in the app&rsquo;s own extension manifest and cannot be edited by the merchant</b>, so they are not fixable in Shopify admin. <b>The fifth, Multifeeds on the UK store, is a custom pixel and is editable</b>; gating it is a five-minute admin change, not yet applied. <b>Gating constrains the loader only</b>: the remote file it loads runs its own consent logic, which also needs turning on in the Multifeeds app. Neither has been done, so this item is open.</p>
+<div class="task has-sub" data-id="a41"><input type="checkbox" id="t-a41" data-task="a41"><label for="t-a41">Session recording disclosed in both privacy policies</label><span class="who-wrap"><input type="text" class="who" data-who="a41" maxlength="28" placeholder="who?" aria-label="Person who did task A41" spellcheck="false"><span class="when" data-when="a41"></span></span><span class="ref"></span></div>
+<p class="task-sub">Microsoft Clarity named and described on all four privacy resources, UK and US, <code>/pages/</code> and <code>/policies/</code>, on 15 September 2026. Before this, none of the four contained the words session recording, session replay or heatmap while Clarity recorded ungated on both stores. Predicted hashes matched actual on all four writes; insertion-only, no other bytes changed. <b>Not legally reviewed, by decision.</b> Masking and retention deliberately omitted from the copy pending a read of the Clarity dashboard.</p>
 </div>
 <div class="wl-group">
 <div class="task has-sub" data-id="a31"><input type="checkbox" id="t-a31" data-task="a31"><label for="t-a31">Correct the Sauvignon Blanc ingredients panel, which omits two ingredients the label prints and adds one it does not</label><span class="who-wrap"><input type="text" class="who" data-who="a31" maxlength="28" placeholder="who?" aria-label="Person who did task A31" spellcheck="false"><span class="when" data-when="a31"></span></span><span class="ref"></span></div>
